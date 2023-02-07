@@ -1,18 +1,15 @@
+import React from 'react';
 import './App.css';
-
+import Navbar from './components/Navbar';
 import { useApi } from './hooks/use-api';
 
 function App() {
   const { response } = useApi();
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          {response}
-        </p>
-      </header>
-    </div>
+    <React.Fragment>
+      <Navbar/>
+    </React.Fragment>
   );
 }
 
