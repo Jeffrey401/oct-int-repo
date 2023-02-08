@@ -9,6 +9,7 @@ function App() {
   return (
     <React.Fragment>
       <Navbar/>
+      <h1>Home</h1>
     </React.Fragment>
   );
 }
