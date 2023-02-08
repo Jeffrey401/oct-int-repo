@@ -1,16 +1,31 @@
-import React from 'react';
+import React from 'react'
 import './App.css'
-import Navbar from './components/Navbar';
-import { useApi } from './hooks/use-api';
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import Exams from './pages/Exams'
+import Admin from './pages/Admin'
 
 function App() {
-  const { response } = useApi();
+  let Component
+  switch(window.location.pathname) {
+    case "/":
+      Component = Home
+      break;
+    case "/exams":
+      Component = Exams
+      break;
+    case "/admin":
+      Component = Admin
+      break;
+  }
 
   return (
-    <React.Fragment>
+    <>
       <Navbar/>
-      <h1>Home</h1>
-    </React.Fragment>
+      <div class="test-container">
+        <Component/>
+      </div>
+    </>
   );
 }
 
