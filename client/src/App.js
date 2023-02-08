@@ -19,8 +19,6 @@ function App() {
       break;
   }
 
-  const [patientData, setData] = useState(data);
-
   return (
     <>
       <Navbar/>
