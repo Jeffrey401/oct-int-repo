@@ -1,48 +1,92 @@
-import React, { useState } from "react";
+import React from "react";
 import './App.css';
-import data from "./converted-data.json"
+import fakeData from "./converted-data.json";
+import { useTable } from "react-table";
 
 import { useApi } from './hooks/use-api';
 
 function App() {
   const { response } = useApi();
 
-  const [patientData, setData] = useState(data);
+  const data = React.useMemo(() => fakeData, []);
+  const columns = React.useMemo(() => [
+  {
+    Header: "Patient ID",
+    accessor: "patientId",
+  },
+  {
+    Header: "Age",
+    accessor: "age",
+  },
+  {
+    Header: "Sex",
+    accessor: "sex",
+  },
+  {
+    Header: "Zip Code",
+    accessor: "zipCode",
+  },
+  {
+    Header: "Patient BMI",
+    accessor: "bmi",
+  },
+  {
+    Header: "Patient Weight",
+    accessor: "weight",
+  },
+  {
+    Header: "Exam Image",
+    accessor: "image",
+  },
+  {
+    Header: "Exam ID",
+    accessor: "examId",
+  },
+  {
+    Header: "ICU Admittance",
+    accessor: "icuAdmit",
+  },
+  {
+    Header: "# of ICU Admits",
+    accessor: "icuNum",
+  },
+  {
+    Header: "Mortality",
+    accessor: "mortality",
+  },
+  ],
+  []
+  );
+
+  const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({ columns, data });
 
   return (
     <div className="App">
-      <table>
+      <table {...getTableProps()}>
         <thead className="App-header">
-          <tr>
-            <th>Patient ID</th>
-            <th>Age</th>
-            <th>Sex</th>
-            <th>Zip Code</th>
-            <th>BMI</th>
-            <th>Weight</th>
-            <th>Image</th>
-            <th>Exam ID</th>
-            <th>ICU Admittance</th>
-            <th>Number of ICU Admits</th>
-            <th>Mortality</th>
-          </tr>
-        </thead>
-        <tbody> 
-          {patientData.map((patient) => (
-          <tr>
-            <td>{patientData.patientId}</td>
-            <td>{patientData.age}</td>
-            <td>{patientData.sex}</td>
-            <td>{patientData.zipCode}</td>
-            <td>{patientData.bmi}</td>
-            <td>{patientData.weight}</td>
-            <td>{patientData.image}</td>
-            <td>{patientData.examId}</td>
-            <td>{patientData.icuAdmit}</td>
-            <td>{patientData.icuNum}</td>
-            <td>{patientData.mortality}</td>
-          </tr>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th>
+                   {column.render("Header")}
+                </th>
+              ))}
+            </tr>
           ))}
+          </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row) =>{
+            prepareRow(row)
+            return(
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()}>
+                    {cell.render("Cell")}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
