@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.css'
 import Navbar from './components/Navbar';
 import { useApi } from './hooks/use-api';
 
