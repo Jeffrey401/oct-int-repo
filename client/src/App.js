@@ -3,6 +3,7 @@ import './App.css';
 import data from "./converted-data.json"
 
 import { useApi } from './hooks/use-api';
+import ProfileInfo from "./profile/profile-info";
 
 function App() {
   const { response } = useApi();
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <table>
+      {/* <table>
         <thead className="App-header">
           <tr>
             <th>Patient ID</th>
@@ -44,7 +45,9 @@ function App() {
           </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
+
+      <ProfileInfo/>
     </div>
   );
 }
