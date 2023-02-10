@@ -22,7 +22,7 @@ function App() {
 <nav>
         <ul>
           <li><Link to="/"> <img src={'http://2.bp.blogspot.com/-NA5Jb-64eUg/URx8CSdcj_I/AAAAAAAAAUo/eCx0irI0rq0/s400/bg_Microsoft_logo3-20120824073001907469-620x349.jpg'} height="100" width="auto" /> </Link></li>
-        </ul>
+        </ul>S
         <ul style={{ display: 'rows' }}>
           <b>
           {_home}
