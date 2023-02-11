@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css';
-import fakeData from "./converted-data.json";
+import fakeData from "./admin-data.json";
 import { useTable } from "react-table";
 
 import { useApi } from './hooks/use-api';
@@ -53,6 +53,14 @@ function App() {
   {
     Header: "Mortality",
     accessor: "mortality",
+  },
+  {
+    Header: "",
+    accessor: "update",
+  },
+  {
+    Header: "",
+    accessor: "delete",
   },
   ],
   []
