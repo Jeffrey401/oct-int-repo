@@ -9,6 +9,7 @@ function App() {
   const { response } = useApi();
 
   const data = React.useMemo(() => fakeData, []);
+  
   const columns = React.useMemo(() => [
   {
     Header: "Patient ID",
@@ -57,10 +58,25 @@ function App() {
   {
     Header: "",
     accessor: "update",
+    Cell: ({ cell }) => (
+      <div>
+        <button>
+            Update
+        </button>
+      </div>
+    )
   },
   {
     Header: "",
     accessor: "delete",
+    Cell: ({ cell }) => (
+      <div>
+        <button>
+            Delete
+        </button>
+      </div>
+    )
+
   },
   ],
   []
