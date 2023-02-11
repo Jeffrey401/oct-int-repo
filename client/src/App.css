@@ -1,3 +1,4 @@
 .test-container {
     text-align: center;
+    columns: 3 auto;
 }
