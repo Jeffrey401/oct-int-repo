@@ -1,4 +1,5 @@
 .test-container {
-    text-align: center;
-    columns: 3 auto;
+    margin-left: 15%;
+    margin-right: 15%;
+    column-count: 4;
 }
