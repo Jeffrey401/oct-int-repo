@@ -1,23 +1,21 @@
+import {Link} from "react-router-dom"
 import './Nav.css'
-
 function Navbar () {
-    return ( 
-        <nav class="navbar">
-            <div class="brand-title">Brand Name</div>
-            <a href="#" class="toggle-button">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </a>
-            <div class="navbar-links">
+    return (
+        <nav className="navbar">
+            <div className="brand-title">Brand Name</div>
+            <div className="navbar-links">
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/exams">Exams</a></li>
-                    <li><a href="/admin">Admin</a></li>
+                    <li>
+                        <Link to={"/"}>Home</Link>
+                    </li>
+                    <li>
+                        <Link to={"/admin"}>Admin</Link>
+                    </li>
                 </ul>
             </div>
         </nav>
-    );
+    )
 }
 
 export default Navbar;
