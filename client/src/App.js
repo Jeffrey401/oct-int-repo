@@ -3,7 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Admin from './components/Admin'
-import Details from './components/Details'
+import ExamDetails from './components/ExamDetails'
 import {BrowserRouter} from "react-router-dom";
 import {Route, Routes} from "react-router-dom";
 
@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route index element={<Home/>}/>
           <Route path='/admin' element={<Admin/>}/>
-          <Route path='/details' element={<Details/>}/>
+          <Route path='/details/:patientId' element={<ExamDetails/>}/>
         </Routes>
       </div>
     </BrowserRouter>

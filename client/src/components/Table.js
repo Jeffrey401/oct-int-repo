@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom"
+// import Details from './Details';
 import data from '../converted-data.json'
 import '../styles/table.css'
 function Table() {
@@ -15,9 +17,12 @@ function Table() {
                     {
                         data.map(patient =>
                             <div className="dataBox" key={patient.patientId}>
-                                <a href='/details'>
+                                {/* <a href='/details'>
                                     <button className="button-solid">{patient.patientId + "\t" + patient.sex + "\t" + patient.age} </button>
-                                </a>
+                                </a> */}
+                                <Link to={"/details/" + patient.patientId}>
+                                    <button className="button-solid">{patient.patientId + "\t" + patient.sex + "\t" + patient.age} </button>
+                                </Link>
                             </div>)
                     }
                 </div>
