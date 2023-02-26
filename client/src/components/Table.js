@@ -15,7 +15,9 @@ function Table() {
                     {
                         data.map(patient =>
                             <div className="dataBox" key={patient.patientId}>
-                                <button className="button-solid">{patient.patientId + "\t" + patient.sex + "\t" + patient.age} </button>
+                                <a href='/details'>
+                                    <button className="button-solid">{patient.patientId + "\t" + patient.sex + "\t" + patient.age} </button>
+                                </a>
                             </div>)
                     }
                 </div>
