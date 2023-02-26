@@ -1,16 +1,16 @@
 import React from 'react'
-import './App.css'
 import Navbar from './components/Navbar'
-import Home from './components/Home'
+import Home from './components/Home/Home'
 import Admin from './components/Admin'
 import ExamDetails from './components/ExamDetails'
 import {BrowserRouter} from "react-router-dom";
 import {Route, Routes} from "react-router-dom";
+import '../src/App.css'
 
 function App() {
   return (
     <BrowserRouter>
-      <div className='test-container'>
+      <div className='container'>
         <Navbar/>
         <Routes>
           <Route index element={<Home/>}/>
@@ -19,6 +19,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+
   )
 }
 
