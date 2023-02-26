@@ -4,6 +4,8 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Exams from './pages/Exams'
 import Admin from './pages/Admin'
+import Card from './components/Card'
+import Data from './converted-data.json'
 
 function App() {
   let Component
@@ -17,13 +19,28 @@ function App() {
     case "/admin":
       Component = Admin
       break;
+    default:
+      console.log('error')
   }
 
   return (
     <>
       <Navbar/>
       <div class="test-container">
-        <Component/>
+        {
+          Data.map(exam => {
+            return (
+              <div key={exam.patientId}>
+                <Card 
+                  patientId = {exam.patientId}
+                  imageUrl = {exam.image}
+                  age = {exam.age}
+                  sex = {exam.sex}
+                />
+              </div>
+            )
+          })
+        }
       </div>
     </>
   );
