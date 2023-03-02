@@ -59,7 +59,10 @@ button-solid:focus{
 }
 .pagination-container li {
     cursor: pointer;
+    list-style-type: none;
+
 }
+
 .previous-page{
     
     border-radius: 5px;
@@ -73,7 +76,7 @@ button-solid:focus{
 .next-page{   
      
     border-radius: 5px;
-    pointer-events: all;
+    
     cursor: pointer;
 }
 .next-page:hover{
@@ -86,6 +89,8 @@ button-solid:focus{
     background-color: #acd8f07a;
 
 }
+
+
 
 
  /*ScrollBar new.*/

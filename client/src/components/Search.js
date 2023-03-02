@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '../styles/search.css'
 import data from "../converted-data.json";
 
 export default function Search() {
