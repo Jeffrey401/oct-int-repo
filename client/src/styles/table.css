@@ -1,3 +1,4 @@
+/**/
 .button-solid {
     text-align: center;
     border:none;
@@ -18,6 +19,76 @@ button-solid:focus{
     
 }
 
+ /* Table CSS */
+ .table{
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 5px 5px;
+    border: 2px solid;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, 0.103);
+    border-collapse: collapse;
+}
+
+.table th  {
+    width: 100px;
+    height: 50px;
+    
+}
+
+.adTbody tr:hover{
+    background-color: #acd8f07a;
+
+}
+.table tr {
+    border-bottom: 1px solid #ddd;
+    cursor:default;
+}
+
+
+
+ /* Pagination CSS*/
+.pagination-container{
+    width: 25%;
+    margin: 15px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.pagination-container li {
+    cursor: pointer;
+}
+.previous-page{
+    
+    border-radius: 5px;
+    pointer-events: all;
+    cursor: default;
+}
+.previous-page:hover{
+    background-color: #acd8f07a;
+}
+
+.next-page{   
+     
+    border-radius: 5px;
+    pointer-events: all;
+    cursor: pointer;
+}
+.next-page:hover{
+    background-color: #acd8f07a;
+}
+
+.pagination-active{
+    cursor:default;
+    border-radius: 50%;
+    background-color: #acd8f07a;
+
+}
+
+
+ /*ScrollBar new.*/
 .scroll{
     overflow-x: hidden;
     overflow-y: scroll;
@@ -48,3 +119,4 @@ button-solid:focus{
     
     scrollbar-width: thin;
 }
+

@@ -4,24 +4,26 @@ import data from "../converted-data.json";
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
   const [filterData, setFilterData] = useState(data);
+  
   const [selectedOption, setSelectedOption] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setFilterData(
-        data.filter(
-          (item) =>
-            item.patientId.toLowerCase().includes(searchValue.toLowerCase()) ||
-            item.firstName.toLowerCase().includes(searchValue.toLowerCase()) ||
-            item.lastName.toLowerCase().includes(searchValue.toLowerCase())
-        )
-      );
+      // Something
     }, 500);
     return () => clearTimeout(timer);
   }, [searchValue]);
 
   const onInputChange = (e) => {
     setSearchValue(e.target.value);
+    setFilterData(
+      data.filter(
+        (item) =>
+          item.patientId.includes(searchValue) ||
+          item.firstName.includes(searchValue) ||
+          item.lastName.includes(searchValue)
+      )
+    );
   };
 
   const handleOptionChange = (e) => {
@@ -31,13 +33,24 @@ export default function Search() {
   return (
     <div className="search-container">
       <h1>Patient Search</h1>
-      <div className="search-bar">
+      <div >
         <input
           value={searchValue}
           onChange={onInputChange}
-          type="search"
+          list = "searchV"
+          type= "search"
+          className= "searchExp"
           placeholder="Patient ID, First or LastName"
         />
+        <datalist id="searchV" >
+                {
+                    filterData.map(patient =>
+                        <option  key={patient.patientId} value={patient.patientId}> {patient.patientId}</option>)
+                }
+        </datalist>
+
+        <br/>
+        <br/>
       </div>
     </div>
   );
