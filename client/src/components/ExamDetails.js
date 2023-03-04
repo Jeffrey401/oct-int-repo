@@ -3,8 +3,7 @@ import data from '../converted-data.json'
 import { useParams } from "react-router";
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { List } from '@mui/material';
-import { ListItem } from '@material-ui/core';
+
 
 
 function ExamDetails() {
