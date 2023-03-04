@@ -1,8 +1,8 @@
 // import React and useState hook from React library and import ReactPaginate component and data from JSON file
 import React, { useState} from "react";
 import ReactPaginate from "react-paginate";
-import '../styles/table.css'
-import data from "../converted-data.json";
+import './Table.css'
+import data from "../../converted-data.json";
 
 // declare a default function called PatientTable
 export default function PatientTable() {

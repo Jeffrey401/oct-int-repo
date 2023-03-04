@@ -3,7 +3,7 @@ import Card from './Card'
 import Search from '../Search'
 
 import Data from './../../converted-data.json'
-import "../../styles/search.css"
+import "../search.css"
 
 import './Home.css'
 
