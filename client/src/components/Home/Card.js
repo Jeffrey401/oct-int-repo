@@ -1,4 +1,6 @@
 import './Card.css'
+import { Link } from "react-router-dom";
+import ExamDetails from '../ExamDetails';
 
 function Card(props) {
     const exam = props
@@ -20,9 +22,9 @@ function Card(props) {
 
             <div className='btn'>
                 <button>
-                    <a>
+                    <Link to={"/details/" + exam.patientId}>
                         View More
-                    </a>
+                    </Link>
                 </button>
             </div>
         </div>

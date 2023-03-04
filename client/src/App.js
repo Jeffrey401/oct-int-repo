@@ -1,49 +1,27 @@
 import React from 'react'
-import './App.css'
 import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Exams from './pages/Exams'
-import Admin from './pages/Admin'
-import Card from './components/Card'
-import Data from './converted-data.json'
+import Home from './components/Home/Home'
+import Admin from './components/Admin'
+import ExamDetails from './components/ExamDetails'
+import {BrowserRouter} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
+import '../src/App.css'
 
 function App() {
-  let Component
-  switch(window.location.pathname) {
-    case "/":
-      Component = Home
-      break;
-    case "/exams":
-      Component = Exams
-      break;
-    case "/admin":
-      Component = Admin
-      break;
-    default:
-      console.log('error')
-  }
-
   return (
-    <>
-      <Navbar/>
-      <div class="test-container">
-        {
-          Data.map(exam => {
-            return (
-              <div key={exam.patientId}>
-                <Card 
-                  patientId = {exam.patientId}
-                  imageUrl = {exam.image}
-                  age = {exam.age}
-                  sex = {exam.sex}
-                />
-              </div>
-            )
-          })
-        }
+    <BrowserRouter>
+      <div className='container'>
+        <Navbar/>
+        <Routes>
+          <Route index element={<Home/>}/>
+          <Route path='/admin' element={<Admin/>}/>
+          <Route path='/details/:patientId' element={<ExamDetails/>}/>
+        </Routes>
       </div>
-    </>
-  );
+    </BrowserRouter>
+
+  )
 }
+
 
 export default App;
