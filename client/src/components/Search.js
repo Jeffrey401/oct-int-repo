@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../styles/search.css'
+import Home from "./Home/Home"
 import data from "../converted-data.json";
 
 export default function Search() {
