@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
  
 const Record = (props) => (
  <tr>
+   <td>{props.record.patientId}</td>
    <td>{props.record.age}</td>
    <td>{props.record.sex}</td>
    <td>{props.record.zipCode}</td>
@@ -30,36 +31,7 @@ const Record = (props) => (
 export default function RecordList() {
  const [records, setRecords] = useState([]);
  
- // This method fetches the records from the database.
- useEffect(() => {
-   async function getRecords() {
-     const response = await fetch(`http://localhost:9000/exams/`);
- 
-     if (!response.ok) {
-       const message = `An error occurred: ${response.statusText}`;
-       window.alert(message);
-       return;
-     }
- 
-     const records = await response.json();
-     setRecords(records);
-   }
- 
-   getRecords();
- 
-   return;
- }, [records.length]);
- 
- // This method will delete a record
- async function deleteRecord(id) {
-   await fetch(`http://localhost:9000/${id}`, {
-     method: "DELETE"
-   });
- 
-   const newRecords = records.filter((el) => el._id !== id);
-   setRecords(newRecords);
- }
- 
+ // This method fetches the records from the database
  useEffect(() => {
     async function getRecords() {
       const response = await fetch(`http://localhost:9000/exams/`);
@@ -109,16 +81,17 @@ export default function RecordList() {
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>
+          <th>Patient Id</th>
            <th>Age</th>
            <th>Sex</th>
            <th>Zip Code</th>
            <th>BMI</th>
            <th>Weight</th>
            <th>Image</th>
-           <th>examsID</th>
-           <th>icuAdmit</th>
-           <th>icuNum</th>
-           <th>mortality</th>
+           <th>exam ID</th>
+           <th>ICU Admittance Status</th>
+           <th>Number Of ICU Visits</th>
+           <th>Mortality</th>
          </tr>
        </thead>
        <tbody>{ExamList()}</tbody>
