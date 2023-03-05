@@ -1,80 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import data from '../converted-data.json'
 import { useParams } from "react-router";
-import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-
-
 function ExamDetails() {
-    //     const { patientId } = useParams();
+    const { patientId } = useParams();
+    const [exams, setExams] = useState();
 
-//     const [exams, setExams] = useState();
-//     useEffect(() => 
-//         const url = 'https://czi-covid-lypkrzry4q-uc.a.run.app/api/exams' + patientId
-//         fetch(url)
-//         .then((response) => {
-//             return response.json
-//         })
-//         .then((data) => {
-//             setExams(data)
-//         })
-//     }, [])
+    useEffect(() => {
+    const url = 'https://czi-covid-lypffhkrzry4q-uc.a.run.app/api/exams' + patientId
+    fetch(url)
+    .then((response) => {
+        return response.json
+    })
+    .then((data) => {
+        setExams(data)
+    })
 
-    const exams = {
-                    patientId: "COVID-19-AR-16434409",
-                    age: "51",
-                    sex: "M",
-                    zipCode: "722",
-                    bmi: "37.7",
-                    weight: "207",
-                    image: "COVID-19-AR-16434409_XR_CHEST_AP_PORTABLE_1.png",
-                    examID: "Exam-1",
-                    icuAdmit: "N",
-                    icuNum: "0",
-                    mortality: "N"
-    }
-    const { patientId } = useParams()
-
+}, []);
     return (
         <div>
                     <h1>{patientId}</h1>
                     {
-                        data.filter(exam => exam.patientId == patientId)
-                        .map(exam => 
+                        data.filter(exams => exams.patientId == patientId)
+                        .map(exams => 
                             // <List>
                             //     <ListItem>
-                            //         Age: {exam.age}
+                            //         Age: {exams.age}
                             //     </ListItem>
                             // </List>
                             <div>
-                                Age: {exam.age}
+                                Age: {exams.age}
                                 <br/>
-                                Sex: {exam.sex}
-                                <br/>
-
-                                Zip Code: {exam.zipCode}
+                                Sex: {exams.sex}
                                 <br/>
 
-                                BMI: {exam.bmi}
+                                Zip Code: {exams.zipCode}
                                 <br/>
 
-                                Weight: {exam.weight}
+                                BMI: {exams.bmi}
                                 <br/>
 
-                                Image: {exam.image}
+                                Weight: {exams.weight}
                                 <br/>
 
-                                examID: {exam.examID}
+                                Image: {exams.image}
                                 <br/>
 
-                                icuAdmit: {exam.icuAdmit}
+                                examsID: {exams.examsID}
                                 <br/>
 
-                                icuNum: {exam.icuNum}
+                                icuAdmit: {exams.icuAdmit}
                                 <br/>
 
-                                mortality: {exam.mortality}
+                                icuNum: {exams.icuNum}
+                                <br/>
+
+                                mortality: {exams.mortality}
                             </div>
                             )
                     }
@@ -83,6 +65,5 @@ function ExamDetails() {
         </div>
     )
 }
-
 
 export default ExamDetails

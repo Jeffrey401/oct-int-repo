@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Card from './Card'
 import Data from './../../converted-data.json'
+import RecordList from '../ExamList';
+
 
 import './Home.css'
 
