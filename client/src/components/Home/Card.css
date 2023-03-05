@@ -52,7 +52,7 @@ h3.p {
     transform: scale(1.1);
 }
 
-a {
+.card-container a {
     text-transform: uppercase;
     color: aqua;
     text-decoration: none;

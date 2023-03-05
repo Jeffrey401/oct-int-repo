@@ -1,6 +1,6 @@
 import Table from "../components/Table"
 import Search from "../components/Search"
-import '../styles/Home.css'
+import '../styles/Admin.css'
 import React from 'react';
 
 
@@ -12,9 +12,8 @@ export default function Home() {
             <br/>
             <br/>
             <Search/>
-            <div styles="center">
-            
-            <Table/>
+            <div className="tbd">
+                <Table/>
             </div>
         </div>
     );
