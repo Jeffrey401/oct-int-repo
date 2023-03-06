@@ -3,9 +3,16 @@ const mongoose = require('mongoose')
 
 //get all exams
 const getExams = async(req, res) => {
-  const exams = await Exam.find({}).sort({createdExam: -1})
+  const exams = await Exam.find()
+  const jsonData = JSON.stringify(exams);
 
-  res.status(200).json(exams)
+  res.setHeader('Content-Type', 'application/json');
+  res.send(jsonData);
+  console.log(jsonData)
+
+ //res.status(200).json(exams)
+ //res.send(exams)
+ 
 }
 
 //get a single exam

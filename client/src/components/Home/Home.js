@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './Card'
 import Data from './../../converted-data.json'
-import RecordList from '../ExamList';
+
 
 
 import './Home.css'
 
-function Home() {
+
+function  Home()  {
+  const [sd, setData] = useState(null);
+
+    fetch('127.0.0.1:9000/exams')
+      .then(response => {
+        if(response.ok){
+          console.log("respondds was oki")
+          return response.text();
+          
+        }
+        else{
+          console.log('api error')}
+      })
+      .then(body => {
+        console.log(body)
+
+        setData(body)
+      })
+      .catch (error => console.error(error));
+
+ 
     return(
       <div className="test-container">
-        {
-          Data.map(exam => {
-            return (
-              <div key={exam.patientId}>
-                <Card 
-                  patientId = {exam.patientId}
-                  imageUrl = {exam.image}
-                  age = {exam.age}
-                  sex = {exam.sex}
-                />
-              </div>
-            )
-          })
+        {   
+            
+            console.log()
         }
       </div>
-    )
-}
+    )}
+
+
 export default Home
