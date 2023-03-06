@@ -8,7 +8,7 @@ const getExams = async(req, res) => {
 
   res.setHeader('Content-Type', 'application/json');
   res.send(jsonData);
-  console.log(jsonData)
+
 
  //res.status(200).json(exams)
  //res.send(exams)
