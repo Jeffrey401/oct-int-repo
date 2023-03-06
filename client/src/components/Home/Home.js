@@ -8,17 +8,15 @@ import './Home.css'
 
 
 function Home() {
-  const [sd, setData] = useState(null);
+
+  // function to set the data
+  const [data, setData] = useState(null);
+
+  //Fetching the data from the database
   useEffect(() => {
     fetch('http://localhost:9000/exams')
       .then(response => {
-        if (response.ok) {
           return response.json();
-
-        }
-        else {
-          console.log('api error')
-        }
       })
       .then(data => {
         console.log(data)
@@ -29,8 +27,21 @@ function Home() {
 
   return (
     <div className="test-container">
-      {
-      }
+     {
+            data && data.map(exam => {
+              return (
+                <div key={exam.patientId}>
+
+                  <Card 
+                    patientId = {exam.patientId}
+                    imageUrl = {exam.image}
+                    age = {exam.age}
+                    sex = {exam.sex}
+                  />
+                </div>
+              )
+            })
+          }
     </div>
   )
 }
