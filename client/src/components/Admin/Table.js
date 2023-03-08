@@ -1,7 +1,9 @@
 // import React and useState hook from React library and import ReactPaginate component and data from JSON file
 import React, { useState, useEffect} from "react";
 import ReactPaginate from "react-paginate";
-import './Table.css'
+import './Table.css';
+import RowMutator from "./RowMutator";
+import RowReader from './RowReader';
 
 // declare a default function called PatientTable
 export default function PatientTable() {
@@ -80,7 +82,7 @@ export default function PatientTable() {
     <td>{patient.icuNum}</td>
     <td>{patient.mortality}</td>
     </tr>
-
+    
   );
 
   const handleClick = patient => (e) =>{

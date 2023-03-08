@@ -1,0 +1,100 @@
+import React from "react";
+
+const RowMutator = ({
+    editFormData,
+    handleEditFormChange,
+    handleCancelClick,
+}) => {
+    return (
+        <tr>
+            <td>
+                <input
+                    type="text"
+                    required="required"
+                    placeholder=""
+                    name="age"
+                    value={editFormData.age}
+                    onChange={handleEditFormChange}
+                ></input>
+            </td>
+            <td>
+                <input
+                    type="text"
+                    required="required"
+                    placeholder=""
+                    name="sex"
+                    value={editFormData.sex}
+                    onChange={handleEditFormChange}
+                ></input>
+            </td>
+            <td>
+                <input
+                    type="text"
+                    required="required"
+                    placeholder=""
+                    name="zipCode"
+                    value={editFormData.zipCode}
+                    onChange={handleEditFormChange}
+                ></input>
+            </td>
+            <td>
+                <input
+                    type="email"
+                    required="required"
+                    placeholder=""
+                    name="bmi"
+                    value={editFormData.bmi}
+                    onChange={handleEditFormChange}
+                ></input>
+                <input
+                    type="email"
+                    required="required"
+                    placeholder=""
+                    name="weight"
+                    value={editFormData.weight}
+                    onChange={handleEditFormChange}
+                ></input>
+                <input
+                    type="email"
+                    required="required"
+                    placeholder=""
+                    name="examID"
+                    value={editFormData.examID}
+                    onChange={handleEditFormChange}
+                ></input>
+                <input
+                    type="email"
+                    required="required"
+                    placeholder=""
+                    name="icuAdmit"
+                    value={editFormData.icuAdmit}
+                    onChange={handleEditFormChange}
+                ></input>
+                <input
+                    type="email"
+                    required="required"
+                    placeholder=""
+                    name="icuNum"
+                    value={editFormData.icuNum}
+                    onChange={handleEditFormChange}
+                ></input>
+                <input
+                    type="email"
+                    required="required"
+                    placeholder=""
+                    name="mortality"
+                    value={editFormData.mortality}
+                    onChange={handleEditFormChange}
+                ></input>
+            </td>
+            <td>
+                <button type="submit">Save</button>
+                <button type="button" onClick={handleCancelClick}>
+                    Cancel
+                </button>
+            </td>
+        </tr>
+    );
+};
+
+export default RowMutator;
