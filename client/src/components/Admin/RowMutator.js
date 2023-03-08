@@ -1,7 +1,7 @@
 import React from "react";
-
+import data from './Table';
 const RowMutator = ({
-    editFormData,
+    updateData = data,
     handleEditFormChange,
     handleCancelClick,
 }) => {
@@ -13,7 +13,7 @@ const RowMutator = ({
                     required="required"
                     placeholder=""
                     name="age"
-                    value={editFormData.age}
+                    value={updateData.age}
                     onChange={handleEditFormChange}
                 ></input>
             </td>
@@ -23,7 +23,7 @@ const RowMutator = ({
                     required="required"
                     placeholder=""
                     name="sex"
-                    value={editFormData.sex}
+                    value={updateData.sex}
                     onChange={handleEditFormChange}
                 ></input>
             </td>
@@ -33,57 +33,57 @@ const RowMutator = ({
                     required="required"
                     placeholder=""
                     name="zipCode"
-                    value={editFormData.zipCode}
+                    value={updateData.zipCode}
                     onChange={handleEditFormChange}
                 ></input>
             </td>
             <td>
                 <input
-                    type="email"
+                    type="text"
                     required="required"
                     placeholder=""
                     name="bmi"
-                    value={editFormData.bmi}
+                    value={updateData.bmi}
                     onChange={handleEditFormChange}
                 ></input>
                 <input
-                    type="email"
+                    type="text"
                     required="required"
                     placeholder=""
                     name="weight"
-                    value={editFormData.weight}
+                    value={updateData.weight}
                     onChange={handleEditFormChange}
                 ></input>
                 <input
-                    type="email"
+                    type="text"
                     required="required"
                     placeholder=""
                     name="examID"
-                    value={editFormData.examID}
+                    value={updateData.examID}
                     onChange={handleEditFormChange}
                 ></input>
                 <input
-                    type="email"
+                    type="text"
                     required="required"
                     placeholder=""
                     name="icuAdmit"
-                    value={editFormData.icuAdmit}
+                    value={updateData.icuAdmit}
                     onChange={handleEditFormChange}
                 ></input>
                 <input
-                    type="email"
+                    type="text"
                     required="required"
                     placeholder=""
                     name="icuNum"
-                    value={editFormData.icuNum}
+                    value={updateData.icuNum}
                     onChange={handleEditFormChange}
                 ></input>
                 <input
-                    type="email"
+                    type="text"
                     required="required"
                     placeholder=""
                     name="mortality"
-                    value={editFormData.mortality}
+                    value={updateData.mortality}
                     onChange={handleEditFormChange}
                 ></input>
             </td>
