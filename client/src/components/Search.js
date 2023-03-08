@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import '../styles/search.css'
+import './search.css'
 
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
