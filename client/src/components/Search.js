@@ -1,12 +1,28 @@
 import React, { useState, useEffect } from "react";
 import '../styles/search.css'
-import data from "../converted-data.json";
 
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
-  const [filterData, setFilterData] = useState(data);
+  const [filterData, setFilterData] = useState(null);
   
   const [selectedOption, setSelectedOption] = useState("");
+
+ // function to set the data
+ const [data, setData] = useState(null);
+
+ //Fetching the data from the database
+ useEffect(() => {
+   fetch('http://localhost:9000/exams')
+     .then(response => {
+         return response.json();
+     })
+     .then(data => {
+       console.log(data)
+       setData(data)
+       setFilterData(data)
+     })
+     .catch(error => console.error(error));
+ }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,7 +34,7 @@ export default function Search() {
   const onInputChange = (e) => {
     setSearchValue(e.target.value);
     setFilterData(
-      data.filter(
+      data && data.filter(
         (item) =>
           item.patientId.includes(searchValue) ||
           item.firstName.includes(searchValue) ||
@@ -45,7 +61,7 @@ export default function Search() {
         />
         <datalist id="searchV" >
                 {
-                    filterData.map(patient =>
+                    data && filterData.map(patient =>
                         <option  key={patient.patientId} value={patient.patientId}> {patient.patientId}</option>)
                 }
         </datalist>

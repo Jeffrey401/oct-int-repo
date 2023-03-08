@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card'
-import Data from './../../converted-data.json'
-
-
 
 import './Home.css'
 

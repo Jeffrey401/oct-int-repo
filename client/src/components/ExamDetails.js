@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import data from '../converted-data.json'
+
 import { useParams } from "react-router";
 import { useSearchParams } from 'react-router-dom';
 
 function ExamDetails() {
     const { patientId } = useParams();
     const [exams, setExams] = useState();
+      // function to set the data
+  const [data, setData] = useState(null);
 
+
+    // This doesnt work, need urgent care!!!
     useEffect(() => {
     const url = 'https://czi-covid-lypffhkrzry4q-uc.a.run.app/api/exams' + patientId
     fetch(url)
@@ -18,11 +22,26 @@ function ExamDetails() {
     })
 
 }, []);
+
+
+
+  //Fetching the data from the database
+  useEffect(() => {
+    fetch('http://localhost:9000/exams')
+      .then(response => {
+          return response.json();
+      })
+      .then(data => {
+        console.log(data)
+        setData(data)
+      })
+      .catch(error => console.error(error));
+  }, []); 
     return (
         <div>
                     <h1>{patientId}</h1>
                     {
-                        data.filter(exams => exams.patientId == patientId)
+                        data && data.filter(exams => exams.patientId == patientId)
                         .map(exams => 
                             // <List>
                             //     <ListItem>
