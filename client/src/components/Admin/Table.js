@@ -104,7 +104,7 @@ export default function PatientTable() {
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
 
-    const editedContact = {
+    const editedPatient = {
       age: updateData.age,
       sex: updateData.sex,
       zipCode: updateData.zipCode,
@@ -114,13 +114,21 @@ export default function PatientTable() {
       icuAdmit: updateData.icuAdmit,
       icuNum: updateData.icuNum,
       mortality: updateData.mortality,
-
     }
+
+    const newPatientData = [...data];
+
+    const index = data.findIndex((patient)=> patient.patientId === updatePatient);
+
+    newPatientData[index] = editedPatient;
+
+    setData(newPatientData);
+    setUpdateId(null);
   }
 
 
   const Table = ({ action }) => (
-    <form>
+    <form onSubmit={handleEditFormSubmit}>
       <table className="table text-center" >
         <thead>
           <tr>
