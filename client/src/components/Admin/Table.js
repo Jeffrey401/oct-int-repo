@@ -39,7 +39,7 @@ export default function PatientTable() {
     setPageNumber(selected);
   };
 
-  const [updatePatient, setUpdate] = useState(null);
+  const [updatePatient, setUpdateId] = useState(null);
 
   // function for updating patient data
   const [updateData, setUpdateData] = useState({
@@ -68,7 +68,7 @@ export default function PatientTable() {
 
   const handleEditClick = (event, patient) => {
     event.preventDefault();
-    setUpdate(patient.patientId);
+    setUpdateId(patient.patientId);
 
     const formValues = {
       age: patient.age,
@@ -80,13 +80,13 @@ export default function PatientTable() {
       icuAdmit: patient.icuAdmit,
       icuNum: patient.icuNum,
       mortality: patient.mortality,
-    }
+    };
 
     setUpdateData(formValues);
-  }
+  };
 
   const handleCancelClick = () => {
-    setUpdate(null);
+    setUpdateId(null);
   };
 
   const handleEditFormChange = (event) => {

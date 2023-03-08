@@ -1,6 +1,6 @@
 import React from "react";
-const RowMutator = ({ 
-    updateData, 
+const RowMutator = ({
+    updateData,
     handleEditFormChange,
     handleCancelClick
 }) => {
@@ -90,7 +90,7 @@ const RowMutator = ({
                 <button type="submit">Save</button>
                 <button type="button" onClick={handleCancelClick}>
                     Cancel
-                    </button>
+                </button>
             </td>
         </tr>
     );
