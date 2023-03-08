@@ -1,6 +1,6 @@
-import Table from "../components/Table"
-import Search from "../components/Search"
-import '../styles/Admin.css'
+import Table from "./Table"
+import Search from "../Search"
+import './Admin.css'
 import React from 'react';
 
 
