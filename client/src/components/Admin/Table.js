@@ -3,8 +3,6 @@ import React, { useState, useEffect, Fragment } from "react";
 import ReactPaginate from "react-paginate";
 import './Table.css';
 import RowMutator from "./RowMutator";
-import RowReader from './RowReader';
-
 // declare a default function called PatientTable
 export default function PatientTable() {
 
@@ -21,8 +19,6 @@ export default function PatientTable() {
 
   // function to set the data
   const [data, setData] = useState(null);
-
-  const [updatePatient, setUpdate] = useState(null);
 
   //Fetching the data from the database
   useEffect(() => {
@@ -43,6 +39,86 @@ export default function PatientTable() {
     setPageNumber(selected);
   };
 
+  const [updatePatient, setUpdate] = useState(null);
+
+  // function for updating patient data
+  const [updateData, setUpdateData] = useState({
+    age: "",
+    sex: "",
+    zipCode: "",
+    bmi: "",
+    weight: "",
+    examID: "",
+    icuAdmit: "",
+    icuNum: "",
+    mortality: "",
+  });
+
+  const [addData, setAddData] = useState({
+    age: "",
+    sex: "",
+    zipCode: "",
+    bmi: "",
+    weight: "",
+    examID: "",
+    icuAdmit: "",
+    icuNum: "",
+    mortality: "",
+  });
+
+  const handleEditClick = (event, patient) => {
+    event.preventDefault();
+    setUpdate(patient.patientId);
+
+    const formValues = {
+      age: patient.age,
+      sex: patient.sex,
+      zipCode: patient.zipCode,
+      bmi: patient.bmi,
+      weight: patient.weight,
+      examID: patient.examID,
+      icuAdmit: patient.icuAdmit,
+      icuNum: patient.icuNum,
+      mortality: patient.mortality,
+    }
+
+    setUpdateData(formValues);
+  }
+
+  const handleCancelClick = () => {
+    setUpdate(null);
+  };
+
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+
+    const newPatientData = { ...updateData }
+    newPatientData[fieldName] = fieldValue;
+
+    setUpdateData(newPatientData);
+  }
+
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault();
+
+    const editedContact = {
+      age: updateData.age,
+      sex: updateData.sex,
+      zipCode: updateData.zipCode,
+      bmi: updateData.bmi,
+      weight: updateData.weight,
+      examID: updateData.examID,
+      icuAdmit: updateData.icuAdmit,
+      icuNum: updateData.icuNum,
+      mortality: updateData.mortality,
+
+    }
+  }
+
+
   const Table = ({ action }) => (
     <form>
       <table className="table text-center" >
@@ -58,6 +134,7 @@ export default function PatientTable() {
             <th>ICU Admit</th>
             <th>ICU Num</th>
             <th>Mortality</th>
+            <th>Administrative Actions</th>
           </tr>
         </thead>
         <tbody className="adTbody">
@@ -65,9 +142,18 @@ export default function PatientTable() {
             .slice(pagesVisited, pagesVisited + usersPerPage) // slice the data array to get the data for the current page only
             .map((patient) => (
               <Fragment>
-                {updatePatient === patient.patientId ? (<RowMutator />
-                ) : ( 
-                <TableRow key={patient.patientId} patient={patient} action={action} />
+                {updatePatient === patient.patientId ? (
+                  <RowMutator
+                    updateData={updateData}
+                    handleEditFormChange={handleEditFormChange}
+                    handleCancelClick={handleCancelClick}
+                  />
+                ) : (
+                  <TableRow
+                    key={patient.patientId}
+                    patient={patient}
+                    action={action}
+                    handleEditClick={handleEditClick} />
                 )}
               </Fragment>
             ))}
@@ -80,7 +166,7 @@ export default function PatientTable() {
 
   const TableRow = ({ patient, action, handleEditClick }) => (
     <tr key={patient.patientId} onClick={action(patient.patientId)} >
-      <td scope="row" >{patient.patientId}</td>
+      <th scope="row" >{patient.patientId}</th>
       <td >{patient.age}</td>
       <td>{patient.sex}</td>
       <td>{patient.zipCode}</td>

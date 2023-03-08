@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     fetch('http://localhost:9000/exams')
       .then(response => {
-          return response.json();
+        return response.json();
       })
       .then(data => {
         console.log(data)
@@ -24,21 +24,21 @@ function Home() {
 
   return (
     <div className="test-container">
-     {
-            data && data.map(exam => {
-              return (
-                <div key={exam.patientId}>
+      {
+        data && data.map(exam => {
+          return (
+            <div key={exam.patientId}>
 
-                  <Card 
-                    patientId = {exam.patientId}
-                    imageUrl = {exam.image}
-                    age = {exam.age}
-                    sex = {exam.sex}
-                  />
-                </div>
-              )
-            })
-          }
+              <Card
+                patientId={exam.patientId}
+                imageUrl={exam.image}
+                age={exam.age}
+                sex={exam.sex}
+              />
+            </div>
+          )
+        })
+      }
     </div>
   )
 }

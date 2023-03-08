@@ -11,7 +11,7 @@ export default function Home() {
             <br/>
             <Search/>
             <div className="tbd">
-                <Table/>
+                <Table />
             </div>
         </div>
     );

@@ -1,9 +1,8 @@
 import React from "react";
-import data from './Table';
-const RowMutator = ({
-    updateData = data,
+const RowMutator = ({ 
+    updateData, 
     handleEditFormChange,
-    handleCancelClick,
+    handleCancelClick
 }) => {
     return (
         <tr>
@@ -91,7 +90,7 @@ const RowMutator = ({
                 <button type="submit">Save</button>
                 <button type="button" onClick={handleCancelClick}>
                     Cancel
-                </button>
+                    </button>
             </td>
         </tr>
     );
