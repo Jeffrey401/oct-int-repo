@@ -1,8 +1,7 @@
 // import React and useState hook from React library and import ReactPaginate component and data from JSON file
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import ReactPaginate from "react-paginate";
-import './Table.css'
-import data from "../../converted-data.json";
+import '../styles/table.css'
 
 // declare a default function called PatientTable
 export default function PatientTable() {
@@ -15,14 +14,32 @@ export default function PatientTable() {
   const pagesVisited = pageNumber * usersPerPage;
 
   // calculate the total number of pages required for pagination based on the length of the data array and usersPerPage
-  const pageCount = Math.ceil(data.length / usersPerPage);
+  const [pageCount, setPageCount] = useState(null); 
+  //
+
+  // function to set the data
+  const [data, setData] = useState(null);
+
+  //Fetching the data from the database
+  useEffect(() => {
+    fetch('http://localhost:9000/exams')
+      .then(response => {
+          return response.json();
+      })
+      .then(data => {
+        console.log(data)
+        setData(data)
+        setPageCount(Math.ceil(data.length / usersPerPage))
+      })
+      .catch(error => console.error(error));
+  }, []);
 
   // function to handle changing page number
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
 
-  const Table = ({data, action}) => (
+  const Table = ({action}) => (
     <table className="table text-center" >
     <thead>
       <tr>
@@ -39,7 +56,7 @@ export default function PatientTable() {
       </tr>
     </thead>
     <tbody className="adTbody">
-      {data
+      {data && data
         .slice(pagesVisited, pagesVisited + usersPerPage) // slice the data array to get the data for the current page only
         .map((patient) => (
           <TableRow  key={patient.patientId} patient={patient} action = {action} />

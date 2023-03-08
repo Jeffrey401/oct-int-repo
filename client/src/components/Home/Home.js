@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './Card'
-import Search from '../Search'
-
-import Data from './../../converted-data.json'
-import "../search.css"
 
 import './Home.css'
 
-const Home = (props) => {
-    return(
-      <>
-        <Search/>
-       
-        <div className="test-container">
-          {
-            Data.map(exam => {
+
+function Home() {
+
+  // function to set the data
+  const [data, setData] = useState(null);
+
+  //Fetching the data from the database
+  useEffect(() => {
+    fetch('http://localhost:9000/exams')
+      .then(response => {
+          return response.json();
+      })
+      .then(data => {
+        console.log(data)
+        setData(data)
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+  return (
+    <div className="test-container">
+     {
+            data && data.map(exam => {
               return (
                 <div key={exam.patientId}>
 
@@ -28,8 +39,9 @@ const Home = (props) => {
               )
             })
           }
-        </div>
-      </>
-    )
+    </div>
+  )
 }
+
+
 export default Home

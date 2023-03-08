@@ -1,6 +1,6 @@
 import './Card.css'
+import React from 'react';
 import { Link } from "react-router-dom";
-import ExamDetails from '../ExamDetails';
 
 function Card(props) {
     const exam = props
