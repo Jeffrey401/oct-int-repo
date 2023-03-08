@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from "react";
-import '../styles/search.css'
+import './search.css'
+import { getData } from "./util/util";
 
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
-  const [filterData, setFilterData] = useState(null);
+   //Fetching the data from the database
+   const [data, setData] = useState(null);
+const getDt = async () => {
+  const dt = await getData();
+  console.log(dt)
+  setData(dt);
+  return dt;
+}
+  const [filterData, setFilterData] = useState(getDt());
   
-  const [selectedOption, setSelectedOption] = useState("");
+  //const [selectedOption, setSelectedOption] = useState("");
 
- // function to set the data
- const [data, setData] = useState(null);
 
- //Fetching the data from the database
- useEffect(() => {
-   fetch('http://localhost:9000/exams')
-     .then(response => {
-         return response.json();
-     })
-     .then(data => {
-       console.log(data)
-       setData(data)
-       setFilterData(data)
-     })
-     .catch(error => console.error(error));
- }, []);
+
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -34,7 +30,7 @@ export default function Search() {
   const onInputChange = (e) => {
     setSearchValue(e.target.value);
     setFilterData(
-      data && data.filter(
+      data.filter(
         (item) =>
           item.patientId.includes(searchValue) ||
           item.firstName.includes(searchValue) ||
@@ -43,15 +39,15 @@ export default function Search() {
     );
   };
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
+  //const handleOptionChange = (e) => {
+  //  setSelectedOption(e.target.value);
+  //};
 
   return (
     <div className="search-container">
       <h1>Patient Search</h1>
       <div >
-        <input
+         <input
           value={searchValue}
           onChange={onInputChange}
           list = "searchV"
@@ -61,13 +57,14 @@ export default function Search() {
         />
         <datalist id="searchV" >
                 {
-                    data && filterData.map(patient =>
+                    filterData.map(patient =>
                         <option  key={patient.patientId} value={patient.patientId}> {patient.patientId}</option>)
                 }
         </datalist>
-
+        
         <br/>
         <br/>
+        
       </div>
     </div>
   );

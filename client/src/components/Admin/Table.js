@@ -1,7 +1,7 @@
 // import React and useState hook from React library and import ReactPaginate component and data from JSON file
 import React, { useState, useEffect} from "react";
 import ReactPaginate from "react-paginate";
-import '../styles/table.css'
+import './Table.css'
 
 // declare a default function called PatientTable
 export default function PatientTable() {
@@ -27,7 +27,7 @@ export default function PatientTable() {
           return response.json();
       })
       .then(data => {
-        console.log(data)
+
         setData(data)
         setPageCount(Math.ceil(data.length / usersPerPage))
       })
