@@ -1,40 +1,83 @@
 import React, { useState, useEffect } from "react";
-import data from './Table'
 
 //TODO: make handleAddFormSubmit post to the database
 
+
+
 export default function PatientMaker() {
 
-    const [patients, setPatients] = useState(data);
-
     const [addFormData, setAddFormData] = useState({
+        patientId: "",
         age: "",
         sex: "",
-        zipCode:"",
+        zipCode: "",
         bmi: "",
         weight: "",
-        examID:"",
-        icuAdmit:"",
-        icuNum:"",
-        mortality:''
+        examID: "",
+        icuAdmit: "",
+        icuNum: "",
+        mortality: ''
     });
+
+    const handleAddFormChange = (event) => {
+        event.preventDefault();
+
+        const fieldName = event.target.getAttribute("name");
+        const fieldValue = event.target.value;
+
+        const newFormData = { ...addFormData };
+        newFormData[fieldName] = fieldValue;
+
+        setAddFormData(newFormData);
+    }
+
+
+    //Adds data to database with the API
+    const handleAddFormSubmit = (event) => {
+        event.preventDefault();
+
+        fetch('http://localhost:9000/exams/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: addFormData.patientId,
+                age: addFormData.age,
+                sex: addFormData.sex,
+                zipCode: addFormData.zipCode,
+                bmi: addFormData.bmi,
+                weight: addFormData.weight,
+                examID: addFormData.examID,
+                icuAdmit: addFormData.icuAdmit,
+                icuNum: addFormData.icuNum,
+                mortality: addFormData.mortality
+            })
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
+    }
+
 
     return (
         <div>
             <h1>Add a Patient</h1>
             <form onSubmit={handleAddFormSubmit}>
+
                 <input
-                    type="text"
+                    type="number"
                     name="age"
                     required="required"
-                    placeholder=""
+                    placeholder="Age..."
                     onChange={handleAddFormChange}
                 />
                 <input
                     type="text"
                     name="sex"
                     required="required"
-                    placeholder=""
+                    placeholder="Sex..."
                     onChange={handleAddFormChange}
                 />
 
@@ -42,23 +85,23 @@ export default function PatientMaker() {
                     type="text"
                     name="zipCode"
                     required="required"
-                    placeholder=""
+                    placeholder="Zip Code..."
                     onChange={handleAddFormChange}
                 />
 
                 <input
-                    type="text"
+                    type="number"
                     name="bmi"
                     required="required"
-                    placeholder=""
+                    placeholder="BMI..."
                     onChange={handleAddFormChange}
                 />
 
                 <input
-                    type="text"
+                    type="number"
                     name="weight"
                     required="required"
-                    placeholder=""
+                    placeholder="Weight"
                     onChange={handleAddFormChange}
                 />
 
@@ -66,7 +109,7 @@ export default function PatientMaker() {
                     type="text"
                     name="examID"
                     required="required"
-                    placeholder=""
+                    placeholder="Exam ID...."
                     onChange={handleAddFormChange}
                 />
 
@@ -74,26 +117,25 @@ export default function PatientMaker() {
                     type="text"
                     name="icuAdmit"
                     required="required"
-                    placeholder=""
+                    placeholder="ICU Admittance..."
                     onChange={handleAddFormChange}
                 />
 
                 <input
-                    type="text"
+                    type="number"
                     name="icuNum"
                     required="required"
-                    placeholder=""
+                    placeholder="ICU Number..."
                     onChange={handleAddFormChange}
                 />
 
                 <input
                     type="text"
-                    name=""
+                    name="mortality"
                     required="required"
-                    placeholder="mortality"
+                    placeholder="Mortality..."
                     onChange={handleAddFormChange}
                 />
-
                 <button type="submit">Add Patient</button>
             </form>
         </div >
