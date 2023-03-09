@@ -7,12 +7,13 @@ import React, { useState, useEffect } from "react";
 export default function PatientMaker() {
 
     const [addFormData, setAddFormData] = useState({
-        patientId: "",
+        patientId: "placeholder",
         age: "",
         sex: "",
         zipCode: "",
         bmi: "",
         weight: "",
+        image: "placeholder",
         examID: "",
         icuAdmit: "",
         icuNum: "",
@@ -43,12 +44,13 @@ export default function PatientMaker() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: addFormData.patientId,
+                patientId: addFormData.patientId,
                 age: addFormData.age,
                 sex: addFormData.sex,
                 zipCode: addFormData.zipCode,
                 bmi: addFormData.bmi,
                 weight: addFormData.weight,
+                image: addFormData.image,
                 examID: addFormData.examID,
                 icuAdmit: addFormData.icuAdmit,
                 icuNum: addFormData.icuNum,
