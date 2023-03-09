@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from "react";
 import './search.css'
-import { getData } from "./util/util";
 
-export default function Search() {
+
+export default function Search({data}) {
   const [searchValue, setSearchValue] = useState("");
    //Fetching the data from the database
-   const [data, setData] = useState(null);
-const getDt = async () => {
-  const dt = await getData();
-  console.log(dt)
-  setData(dt);
-  return dt;
-}
-  const [filterData, setFilterData] = useState(getDt());
+
+  const [filterData, setFilterData] = useState(data);
   
   //const [selectedOption, setSelectedOption] = useState("");
-
-
-
-
+  const dt = data;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,9 +19,10 @@ const getDt = async () => {
   }, [searchValue]);
 
   const onInputChange = (e) => {
+    
     setSearchValue(e.target.value);
     setFilterData(
-      data.filter(
+      dt.filter(
         (item) =>
           item.patientId.includes(searchValue) ||
           item.firstName.includes(searchValue) ||
@@ -45,6 +37,7 @@ const getDt = async () => {
 
   return (
     <div className="search-container">
+   
       <h1>Patient Search</h1>
       <div >
          <input

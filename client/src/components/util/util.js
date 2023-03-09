@@ -1,20 +1,18 @@
-import React ,{useEffect, useState} from "react";
+import React ,{ useEffect, useState } from 'react';
 
+function useGetData() {
+  const [data, setData] = useState(null);
 
-
-export const getData = async() =>{
-
-  //Fetching the data from the database
   useEffect(() => {
     fetch('http://localhost:9000/exams')
-      .then(response => {
-          return response.json();
-      })
-      .then(data => {
-        return data;
-      })
+      .then(response => response.json())
+      .then(data =>  setData(data))
       .catch(error => console.error(error));
   }, []);
+  return data;
+}
 
-    return null ;
-};
+export default useGetData;
+
+
+

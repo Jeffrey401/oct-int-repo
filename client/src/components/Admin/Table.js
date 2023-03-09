@@ -27,7 +27,7 @@ export default function PatientTable() {
           return response.json();
       })
       .then(data => {
-
+        data && 
         setData(data)
         setPageCount(Math.ceil(data.length / usersPerPage))
       })
@@ -95,7 +95,7 @@ export default function PatientTable() {
   return (
     <div>
 
-        <Table data={data} action={handleClick} />
+        <Table  action={handleClick} />
 
         {/* Render the ReactPaginate component */}
         <ReactPaginate
