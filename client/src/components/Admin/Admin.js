@@ -1,19 +1,18 @@
 import Table from "./Table"
 import Search from "../Search"
 import './Admin.css'
-import React from 'react';
+import React ,{useEffect,useState}from 'react';
 
 
-export default function Home() {
-
-
+export default function Admin({data}) {
+    
     return (
         <div>
             <br/>
             <br/>
-            <Search/>
+            <Search data={data}/>
             <div className="tbd">
-                <Table/>
+                <Table />
             </div>
         </div>
     );

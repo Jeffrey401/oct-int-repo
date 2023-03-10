@@ -4,23 +4,9 @@ import Card from './Card'
 import './Home.css'
 
 
-function Home() {
+function Home({data}) {
 
-  // function to set the data
-  const [data, setData] = useState(null);
 
-  //Fetching the data from the database
-  useEffect(() => {
-    fetch('http://localhost:9000/exams')
-      .then(response => {
-          return response.json();
-      })
-      .then(data => {
-        console.log(data)
-        setData(data)
-      })
-      .catch(error => console.error(error));
-  }, []);
 
   return (
     <div className="test-container">
