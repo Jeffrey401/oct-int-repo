@@ -8,6 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Route, Routes} from "react-router-dom";
 import '../src/App.css'
 import useGetData from "./components/util/util";
+import { Navigate } from 'react-router-dom'
 
 function App() {
 
@@ -21,7 +22,9 @@ function App() {
           <Route index element={<Home data={data}/>}/>
           <Route path='/admin' element={<Admin data={data}/>}/>
           <Route path='/details/:patientId' element={<ExamDetails/>}/>
-          <Route exact path="/" element={<RecordList />} />        </Routes>
+          <Route exact path="/" element={<RecordList />} />     
+          <Route path="/oct-int-repo" element={<Navigate to="/" />} />  
+        </Routes>
       </div>
     </BrowserRouter>
 

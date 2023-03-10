@@ -1,11 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom"
 import './Nav.css'
-
+import logo from "../images/images/hackLogo.png"
+import Home from "./Home/Home";
 function Navbar () {
     return (
         <nav className="navbar">
-            <div className="brand-title">COVID-19 Exam Directory</div>
+            <img className="ms-3" width={50} src= {logo} alt = "logo"
+                onClick={() => <Link to={<Home/>}></Link>}>
+            </img>
+            <div className="brand-title">Oct-In Medical</div>
             <div className="navbar-links">
                 <ul>
                     <li>

@@ -11,9 +11,6 @@ function Card(props) {
                 <img src={imgApi + exam.imageUrl} alt="chest x-ray"></img>
             </div>
             <div className='card-content'>
-                {/* <div className='card-title'>
-                    {exam.patientName}
-                </div> */}
                 <div className='card-title'>
                     <h4>{exam.patientId}</h4>
                 </div>
