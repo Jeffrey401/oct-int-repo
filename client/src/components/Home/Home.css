@@ -2,7 +2,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.5%;
-<<<<<<< HEAD
     margin: 2% 20% 5%;
     margin-left:auto;
     margin-right:auto;
@@ -11,9 +10,3 @@
     align-content: space-evenly;
     align-items: center;
 }
-=======
-    margin-left: 25%;
-    margin-right: 25%;
-        
-}
->>>>>>> 69ace80371a90a6d854ecfcf59da577fb885bcb1
