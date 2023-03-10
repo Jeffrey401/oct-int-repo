@@ -12,6 +12,9 @@ function Card(props) {
             </div>
             <div className='card-content'>
                 <div className='card-title'>
+                    {exam.patientName}
+                </div>
+                <div className='card-title'>
                     {exam.patientId}
                 </div>
                 <div className='card-body'>

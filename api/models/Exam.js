@@ -8,6 +8,10 @@ const examSchema = new Schema ({
         type: String,
         required: true
     },
+    patientName: {
+        type: String,
+        required: false
+    },
     age: {
         type: Number,
         required: true
@@ -47,6 +51,10 @@ const examSchema = new Schema ({
     mortality: {
         type: String,
         required: true
+    },
+    note: {
+        type: String,
+        required: false
     }
 }, { timestamps: true })
 
