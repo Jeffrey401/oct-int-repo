@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-//TODO: make handleAddFormSubmit post to the database
-
-
-
+//function for adding new patients to the database
 export default function PatientMaker() {
 
+    /**creating a variable and mutator to hold the new
+     * patient's data
+     */
     const [addFormData, setAddFormData] = useState({
         patientId: "placeholder",
         age: "",
@@ -33,7 +33,7 @@ export default function PatientMaker() {
     }
 
 
-    //Adds data to database with the API
+    //Adds input data to database with the API as a json form
     const handleAddFormSubmit = (event) => {
         event.preventDefault();
 
@@ -62,7 +62,7 @@ export default function PatientMaker() {
             .catch(err => console.log(err));
     }
 
-
+    //returns a table of input fields to enter new patient's data
     return (
         <div>
             <h1>Add a Patient</h1>
