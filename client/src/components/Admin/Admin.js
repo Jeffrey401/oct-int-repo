@@ -10,7 +10,7 @@ export default function Home() {
         <div>
             <br/>
             <br/>
-            <Search/>
+            <Search data={data}/>
             <div className="tbd">
                 <Table />
             </div>

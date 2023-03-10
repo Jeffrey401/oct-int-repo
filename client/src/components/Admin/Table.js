@@ -36,7 +36,7 @@ export default function PatientTable() {
         return response.json();
       })
       .then(data => {
-        console.log(data)
+        data && 
         setData(data)
         setPageCount(Math.ceil(data.length / usersPerPage))
       })

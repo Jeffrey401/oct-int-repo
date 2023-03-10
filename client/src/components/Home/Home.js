@@ -4,10 +4,8 @@ import Card from './Card'
 import './Home.css'
 
 
-function Home() {
+function Home({data}) {
 
-  // function to set the data
-  const [data, setData] = useState(null);
 
   //Fetching the data from the database
   useEffect(() => {
