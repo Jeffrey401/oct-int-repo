@@ -1,8 +1,12 @@
 .test-container {
     display: flex;
-    align-content:center;
     flex-wrap: wrap;
     gap: 1.5%;
-    margin: 5% 20% 5%;
-        
+    margin: 2% 20% 5%;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
 }

@@ -1,11 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom"
 import './Nav.css'
+import logo from "../images/hackLogo.png"
 
 function Navbar () {
     return (
         <nav className="navbar">
-            <div className="brand-title">Brand Name</div>
+            <img src= {logo} alt = "logo"></img>
+            <div className="brand-title">Oct-In Medical</div>
             <div className="navbar-links">
                 <ul>
                     <li>
