@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 //function for adding new patients to the database
 export default function PatientMaker() {

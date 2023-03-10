@@ -36,8 +36,8 @@ export default function PatientTable() {
         return response.json();
       })
       .then(data => {
-        data && 
-        setData(data)
+        data &&
+          setData(data)
         setPageCount(Math.ceil(data.length / usersPerPage))
       })
       .catch(error => console.error(error));
@@ -78,7 +78,7 @@ export default function PatientTable() {
 
   const TableRow = ({ patient, action }) => (
     <tr key={patient.patientId} onClick={action(patient.patientId)}>
-      <td scope="row" >{patient.patientId}</td>
+      <th scope="row" >{patient.patientId}</th>
       <td >{patient.age}</td>
       <td>{patient.sex}</td>
       <td>{patient.zipCode}</td>
@@ -102,12 +102,24 @@ export default function PatientTable() {
     setButtonPopup(true);
   }
 
+  function handleDeleteClick(targetPatient) {
+    const deletedPatient = [...singlePatient];
+
+    const index = data.findIndex((contact) => singlePatient.patientId === targetPatient);
+
+    deletedPatient.splice(index, 1);
+
+    setSinglePatient(deletedPatient);
+  };
+
   // return a div containing the table and ReactPaginate component
   return (
     <div>
 
       <Table data={data} action={handleClick} />
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup} data={singlePatient}/>
+      <Popup
+        trigger={buttonPopup} setTrigger={setButtonPopup} patient={singlePatient} handleDeleteClick={handleDeleteClick}
+      />
 
       {/* Render the ReactPaginate component */}
       <ReactPaginate

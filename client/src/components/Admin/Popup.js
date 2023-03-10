@@ -1,6 +1,8 @@
 import React from 'react'
+import patient from './Table'
+import handleDeleteClick from './Table'
 
-export default function Popup(props, data) {
+export default function Popup (props, data) {
     console.log(data);
     return (props.trigger) ? (
         <div className='popup'>
@@ -12,18 +14,17 @@ export default function Popup(props, data) {
 
                     <input
                         type="number"
-                        value="I am trying to send data"
                         name="age"
                         required="required"
                         placeholder="Age..."
-                        
+
                     />
                     <input
                         type="text"
                         name="sex"
                         required="required"
                         placeholder="Sex..."
-                        
+
                     />
 
                     <input
@@ -31,7 +32,7 @@ export default function Popup(props, data) {
                         name="zipCode"
                         required="required"
                         placeholder="Zip Code..."
-                        
+
                     />
 
                     <input
@@ -39,7 +40,7 @@ export default function Popup(props, data) {
                         name="bmi"
                         required="required"
                         placeholder="BMI..."
-                        
+
                     />
 
                     <input
@@ -47,7 +48,7 @@ export default function Popup(props, data) {
                         name="weight"
                         required="required"
                         placeholder="Weight"
-                        
+
                     />
 
                     <input
@@ -55,7 +56,7 @@ export default function Popup(props, data) {
                         name="examID"
                         required="required"
                         placeholder="Exam ID...."
-                        
+
                     />
 
                     <input
@@ -63,7 +64,7 @@ export default function Popup(props, data) {
                         name="icuAdmit"
                         required="required"
                         placeholder="ICU Admittance..."
-                        
+
                     />
 
                     <input
@@ -71,7 +72,7 @@ export default function Popup(props, data) {
                         name="icuNum"
                         required="required"
                         placeholder="ICU Number..."
-                        
+
                     />
 
                     <input
@@ -79,10 +80,10 @@ export default function Popup(props, data) {
                         name="mortality"
                         required="required"
                         placeholder="Mortality..."
-                        
+
                     />
                     <button type="submit">Update Patient Data</button>
-                    <button>Delete</button>
+                    <button type="button" onClick={() => handleDeleteClick(patient.patientId)}>Delete This Patient</button>
                 </form>
             </div>
 
