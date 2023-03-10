@@ -36,7 +36,7 @@ export default function Search({data}) {
   //};
 
   return (
-    <div className="search-container">
+    <div className="search-container text-center">
    
       <h1>Patient Search</h1>
       <div >
