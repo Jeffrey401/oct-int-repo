@@ -1,5 +1,7 @@
 const express = require('express');
+
 const router = express.Router();
+const bodyParser = require("body-parser");
 
 const {
     createExam,
@@ -23,5 +25,6 @@ router.delete('/:id', deleteExam)
 
 //UPDATE an exam
 router.patch('/id', updateExam)
+
 
 module.exports = router;

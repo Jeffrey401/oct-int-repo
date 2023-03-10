@@ -1,6 +1,6 @@
 import './Card.css'
+import React from 'react';
 import { Link } from "react-router-dom";
-import ExamDetails from '../ExamDetails';
 
 function Card(props) {
     const exam = props
@@ -11,6 +11,9 @@ function Card(props) {
                 <img src={imgApi + exam.imageUrl} alt="chest x-ray"></img>
             </div>
             <div className='card-content'>
+                <div className='card-title'>
+                    {exam.patientName}
+                </div>
                 <div className='card-title'>
                     {exam.patientId}
                 </div>

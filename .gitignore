@@ -5,6 +5,13 @@
 /.pnp
 .pnp.js
 /api/.env
+<<<<<<< HEAD
+=======
+
+/api/.env
+api/.env
+.env
+>>>>>>> 69ace80371a90a6d854ecfcf59da577fb885bcb1
 
 # testing
 /coverage

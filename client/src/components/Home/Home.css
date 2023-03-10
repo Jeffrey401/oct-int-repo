@@ -3,6 +3,11 @@
     align-content:center;
     flex-wrap: wrap;
     gap: 1.5%;
+<<<<<<< HEAD
     margin: 5% 20% 0%;
+=======
+    margin-left: 25%;
+    margin-right: 25%;
+>>>>>>> 69ace80371a90a6d854ecfcf59da577fb885bcb1
         
 }
