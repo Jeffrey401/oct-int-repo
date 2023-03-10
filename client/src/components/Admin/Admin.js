@@ -1,9 +1,8 @@
 import Table from "./Table"
 import Search from "../Search"
 import './Admin.css'
+import PatientMaker from "./PatientMaker";
 import React ,{useEffect,useState}from 'react';
-
-
 export default function Admin({data}) {
     
     return (
@@ -14,8 +13,7 @@ export default function Admin({data}) {
             <div className="tbd">
                 <Table />
             </div>
+            <PatientMaker />
         </div>
     );
-
-
 }
