@@ -27,6 +27,8 @@ export default function PatientTable() {
   // function to set the data
   const [data, setData] = useState(null);
 
+  const [singlePatient, setSinglePatient] = useState(null);
+
   //Fetching the data from the database
   useEffect(() => {
     fetch('http://localhost:9000/exams')
@@ -75,7 +77,7 @@ export default function PatientTable() {
   );
 
   const TableRow = ({ patient, action }) => (
-    <tr key={patient.patientId} onClick={action(patient.patientId)} >
+    <tr key={patient.patientId} onClick={action(patient.patientId)}>
       <td scope="row" >{patient.patientId}</td>
       <td >{patient.age}</td>
       <td>{patient.sex}</td>
@@ -86,11 +88,6 @@ export default function PatientTable() {
       <td>{patient.icuAdmit}</td>
       <td>{patient.icuNum}</td>
       <td>{patient.mortality}</td>
-      <button onClick={() => setButtonPopup(true)}>Actions</button>
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <h3>Test</h3>
-      </Popup>
-
     </tr>
 
   );
@@ -100,6 +97,9 @@ export default function PatientTable() {
     // Patient to be update, edit or delete!
     console.log("Value of patient is " + patient);
 
+    setSinglePatient(patient);
+
+    setButtonPopup(true);
   }
 
   // return a div containing the table and ReactPaginate component
@@ -107,6 +107,7 @@ export default function PatientTable() {
     <div>
 
       <Table data={data} action={handleClick} />
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup} data={singlePatient}/>
 
       {/* Render the ReactPaginate component */}
       <ReactPaginate

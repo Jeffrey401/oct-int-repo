@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function Popup(props) {
+export default function Popup(props, data) {
+    console.log(data);
     return (props.trigger) ? (
         <div className='popup'>
             <div className='popup-inner'>
@@ -11,6 +12,7 @@ export default function Popup(props) {
 
                     <input
                         type="number"
+                        value="I am trying to send data"
                         name="age"
                         required="required"
                         placeholder="Age..."
@@ -80,7 +82,7 @@ export default function Popup(props) {
                         
                     />
                     <button type="submit">Update Patient Data</button>
-                    
+                    <button>Delete</button>
                 </form>
             </div>
 
