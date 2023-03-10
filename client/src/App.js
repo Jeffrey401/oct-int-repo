@@ -1,11 +1,7 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import Home from './components/Home/Home'
-<<<<<<< HEAD
-import Admin from './pages/Admin'
-=======
 import Admin from './components/Admin/Admin'
->>>>>>> 69ace80371a90a6d854ecfcf59da577fb885bcb1
 import ExamDetails from './components/ExamDetails'
 import RecordList from './components/ExamList'
 import {BrowserRouter} from "react-router-dom";
@@ -19,7 +15,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className='container'>
+      <div>
         <Navbar/>
         <Routes>
           <Route index element={<Home data={data}/>}/>

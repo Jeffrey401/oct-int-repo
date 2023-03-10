@@ -5,7 +5,7 @@ import './Nav.css'
 function Navbar () {
     return (
         <nav className="navbar">
-            <div className="brand-title">Brand Name</div>
+            <div className="brand-title">COVID-19 Exam Directory</div>
             <div className="navbar-links">
                 <ul>
                     <li>
