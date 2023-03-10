@@ -21,7 +21,8 @@ function App() {
           <Route index element={<Home data={data}/>}/>
           <Route path='/admin' element={<Admin data={data}/>}/>
           <Route path='/details/:patientId' element={<ExamDetails/>}/>
-          <Route exact path="/" element={<RecordList />} />        </Routes>
+          <Route exact path="/" element={<RecordList />} />        
+        </Routes>
       </div>
     </BrowserRouter>
 
