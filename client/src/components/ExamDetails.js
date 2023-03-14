@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 import { useParams } from "react-router";
-import { useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './details.css'
 
 function ExamDetails() {
     const { patientId } = useParams();
     const [exams, setExams] = useState();
       // function to set the data
   const [data, setData] = useState(null);
+  const imgApi = "https://ohif-hack-diversity-covid.s3.amazonaws.com/covid-png/"
+
 
 
     // This doesnt work, need urgent care!!!
@@ -38,8 +41,7 @@ function ExamDetails() {
       .catch(error => console.error(error));
   }, []); 
     return (
-        <div>
-                    <h1>{patientId}</h1>
+        <div className='container'>
                     {
                         data && data.filter(exams => exams.patientId == patientId)
                         .map(exams => 
@@ -48,35 +50,50 @@ function ExamDetails() {
                             //         Age: {exams.age}
                             //     </ListItem>
                             // </List>
-                            <div>
-                                Age: {exams.age}
-                                <br/>
-                                Sex: {exams.sex}
-                                <br/>
+                            <div >
+                                <div>
+                                    <h1 className='display-1'>{exams.patientId}</h1>
+                                    
+                                    <div className='row'>
+                                        <div className='col row position-relative'>
 
-                                Zip Code: {exams.zipCode}
-                                <br/>
+                                            
+                                            <div className='col-6'>
+                                            <h3 className='mt-5 mb-5'>Age: {exams.age}</h3>
+                                            <h3 className='mt-5 mb-5'>Sex: {exams.sex}</h3>
+                                            <h3 className='mt-5 mb-5'>Zip Code: {exams.zipCode}</h3>
+                                            <h3 className='mt-5 mb-5'>BMI: {exams.bmi}</h3>
+                                            <h3 className='mt-5 mb-5'>Weight: {exams.weight}</h3>
+                                            </div>
+                                            <div className='col-6'>
+                                            <h3 className='mt-5 mb-5'>Exam ID: {exams.examsID}</h3>
+                                            <h3 className='mt-5 mb-5'>ICU Admit: {exams.icuAdmit}</h3>
+                                            <h3 className='mt-5 mb-5'>ICU Number: {exams.icuNum}</h3>
+                                            <h3 className='mt-5 mb-5'>Mortality: {exams.mortality}</h3>
+                                            
+                                            <div className='position-absolute bottom-0 start-0'>
 
-                                BMI: {exams.bmi}
-                                <br/>
+                                            <Link to={"/"}>
+                                                <h3 className='return'>Return to Exams</h3>
+                                            </Link>
+                                            </div>
+                                            
+                                            </div>
 
-                                Weight: {exams.weight}
-                                <br/>
+                                        
+                                        </div>
+                                        <div className='col'>
+                                            <img className='ms-5 mt-3 rounded' width={625} src={imgApi + exams.image} alt="chest x-ray"
+                                            onClick={() => window.open(imgApi + exams.image)}>
+                                            </img>
+                                        </div>
+                                    </div>
 
-                                Image: {exams.image}
-                                <br/>
-
-                                examsID: {exams.examsID}
-                                <br/>
-
-                                icuAdmit: {exams.icuAdmit}
-                                <br/>
-
-                                icuNum: {exams.icuNum}
-                                <br/>
-
-                                mortality: {exams.mortality}
+                                </div>
+                                
+        
                             </div>
+                            
                             )
                     }
 

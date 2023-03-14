@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card'
-
 import './Home.css'
 
-
 function Home({data}) {
-
-
 
   return (
     <div className="test-container">
@@ -14,7 +10,6 @@ function Home({data}) {
         data && data.map(exam => {
           return (
             <div key={exam.patientId}>
-
                   <Card 
                     patientId = {exam.patientId}
                     patientName = {exam.patientName}
@@ -29,6 +24,5 @@ function Home({data}) {
     </div>
   )
 }
-
 
 export default Home

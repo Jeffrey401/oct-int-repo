@@ -12,18 +12,17 @@ function Card(props) {
             </div>
             <div className='card-content'>
                 <div className='card-title'>
-                    {exam.patientName}
+                    <h4>{exam.patientId}</h4>
                 </div>
-                <div className='card-title'>
-                    {exam.patientId}
-                </div>
-                <div className='card-body'>
-                    <p>{exam.age}</p>
-                    <p>{exam.sex}</p>
+                <div className='card-bod'>
+                    <p>{exam.patientName}</p>
+                    {exam.sex == 'M' ? <i class="fa-solid fa-mars fa-lg"></i> : <i class="fa-solid fa-venus fa-lg"></i>}
+                    
+                    <p className='mt-4'>Age: {exam.age} </p>
                 </div>
             </div>
 
-            <div className='btn'>
+            <div className='btn border-top'>
                 <button>
                     <Link to={"/details/" + exam.patientId}>
                         View More

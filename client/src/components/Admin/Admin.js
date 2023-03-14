@@ -12,6 +12,7 @@ export default function Admin({ data }) {
             <br />
             <br />
             {/* <Search data={data} /> */}
+
             <div className="tbd">
                 <Table />
             </div>
