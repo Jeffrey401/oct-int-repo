@@ -1,6 +1,8 @@
 // import React and useState hook from React library and import ReactPaginate component and data from JSON file
 import React, { useState, useEffect } from "react";
+
 import ReactPaginate from "react-paginate";
+import { Route } from "react-router-dom";
 import Popup from './Popup'
 import './Popup.css'
 import './Table.css'
@@ -29,9 +31,65 @@ export default function PatientTable() {
 
   const [singlePatient, setSinglePatient] = useState(null);
 
+  const [editFormData, setEditFormData] = useState({
+    patientId: "placeholder",
+    age: "",
+    sex: "",
+    zipCode: "",
+    bmi: "",
+    weight: "",
+    image: "placeholder",
+    examID: "",
+    icuAdmit: "",
+    icuNum: "",
+    mortality: ''
+  });
+
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+    
+
+    const newFormData = { ...editFormData };
+    newFormData[fieldName] = fieldValue;
+
+    setEditFormData(newFormData);
+  }
+
+  //Adds input data to database with the API as a json form
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault();
+
+    /*fetch('http://localhost:9000/exams/', {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        patientId: editFormData.patientId,
+        age: editFormData.age,
+        sex: editFormData.sex,
+        zipCode: editFormData.zipCode,
+        bmi: editFormData.bmi,
+        weight: editFormData.weight,
+        image: editFormData.image,
+        examID: editFormData.examID,
+        icuAdmit: editFormData.icuAdmit,
+        icuNum: editFormData.icuNum,
+        mortality: editFormData.mortality
+      })
+    })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));*/
+  }
+
   //Fetching the data from the database
   useEffect(() => {
-    fetch('http://localhost:9000/exams')
+    fetch('http://localhost:9000/exams/')
       .then(response => {
         return response.json();
       })
@@ -47,6 +105,8 @@ export default function PatientTable() {
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
+
+
 
   const Table = ({ action }) => (
     <table className="table text-center" >
@@ -77,7 +137,7 @@ export default function PatientTable() {
   );
 
   const TableRow = ({ patient, action }) => (
-    <tr key={patient.patientId} onClick={action(patient.patientId)}>
+    <tr key={patient.patientId} onClick={action(patient)}>
       <th scope="row" >{patient.patientId}</th>
       <td >{patient.age}</td>
       <td>{patient.sex}</td>
@@ -95,22 +155,12 @@ export default function PatientTable() {
   const handleClick = patient => (e) => {
 
     // Patient to be update, edit or delete!
-    console.log("Value of patient is " + patient);
+    console.log("Value of patient is " + patient.patientId);
 
+    //const targetPatient = data.find(clickedPatient => clickedPatient.patientId === patient);
     setSinglePatient(patient);
-
     setButtonPopup(true);
   }
-
-  function handleDeleteClick(targetPatient) {
-    const deletedPatient = [...singlePatient];
-
-    const index = data.findIndex((contact) => singlePatient.patientId === targetPatient);
-
-    deletedPatient.splice(index, 1);
-
-    setSinglePatient(deletedPatient);
-  };
 
   // return a div containing the table and ReactPaginate component
   return (
@@ -118,8 +168,10 @@ export default function PatientTable() {
 
       <Table data={data} action={handleClick} />
       <Popup
-        trigger={buttonPopup} setTrigger={setButtonPopup} patient={singlePatient} handleDeleteClick={handleDeleteClick}
+        trigger={buttonPopup} setTrigger={setButtonPopup} singlePatient={singlePatient} setButtonPopup={setButtonPopup}
+        handleEditFormChange={handleEditFormChange} handleEditFormSubmit={handleEditFormSubmit} editFormData={editFormData}
       />
+
 
       {/* Render the ReactPaginate component */}
       <ReactPaginate

@@ -15,13 +15,13 @@ const {
 router.get('/', getExams)
 
 //GET a single exam
-router.get('/:id', getOneExam)
+router.get('/:_id', getOneExam)
 
 //POST a new exam
 router.post('/', createExam)
 
 //DELETE an exam
-router.delete('/:id', deleteExam)
+router.delete('/:_id', deleteExam)
 
 //UPDATE an exam
 router.patch('/id', updateExam)
