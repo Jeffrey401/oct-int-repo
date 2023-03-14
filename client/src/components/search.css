@@ -1,5 +1,12 @@
 .dropdown{
     position: absolute;
     z-index: 20;
-    
+}
+
+.searchExp{
+    height: 50px;
+    width: 350px;
+    border:none;
+    background-color: #D9D9D9;
+    padding-left: 10px;
 }

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import './search.css'
 
 
-export default function Search({data}) {
+export default function Search(props) {
   const [searchValue, setSearchValue] = useState("");
+
    //Fetching the data from the database
 
-  const [filterData, setFilterData] = useState(data);
+  const [filterData, setFilterData] = useState(props.data);
   
   //const [selectedOption, setSelectedOption] = useState("");
-  const dt = data;
+  const dt = props.data;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,12 +30,18 @@ export default function Search({data}) {
           item.firstName.includes(searchValue) ||
           item.lastName.includes(searchValue)
       )
+      
     );
+
   };
 
-  //const handleOptionChange = (e) => {
-  //  setSelectedOption(e.target.value);
-  //};
+  const handleClick  = () => {
+    const found = dt.find(obj => {
+      return obj.patientId === searchValue
+    }) 
+    props.onAction(found);
+
+  }
 
   return (
     <div className="search-container text-center">
@@ -43,6 +51,7 @@ export default function Search({data}) {
          <input
           value={searchValue}
           onChange={onInputChange}
+          onKeyPress={handleClick}
           list = "searchV"
           type= "search"
           className= "searchExp"
@@ -50,8 +59,8 @@ export default function Search({data}) {
         />
         <datalist id="searchV" >
                 {
-                    filterData.map(patient =>
-                        <option  key={patient.patientId} value={patient.patientId}> {patient.patientId}</option>)
+                    filterData && filterData.map(patient =>
+                        <option  key={patient.patientId} value={patient.patientId}> {patient.patientId  }</option>)
                 }
         </datalist>
         

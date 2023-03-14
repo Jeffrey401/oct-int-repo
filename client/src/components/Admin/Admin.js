@@ -1,22 +1,20 @@
 import Table from "./Table"
-//import Search from "../Search"
+
 import './Admin.css'
-import PatientMaker from "./PatientMaker";
-import React from 'react';
+
+import React,{useState} from "react";
 
 
 export default function Admin({ data }) {
-
+    const [actionToConfirm, setActionToConfirm] = useState(false);
+    
     return (
         <div>
-            <br />
-            <br />
-            {/* <Search data={data} /> */}
-
+           
             <div className="tbd">
-                <Table />
+                {data && <Table loadData={data} length = {data.length} onTrue={actionToConfirm}/>}
             </div>
-            <PatientMaker />
+
         </div>
     );
 }
