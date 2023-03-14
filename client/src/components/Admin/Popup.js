@@ -4,27 +4,72 @@ export default function Popup(props) {
 
 
 
+    const [editFormData, setEditFormData] = useState({
+        patientId: "",
+        age: "",
+        sex: "",
+        zipCode: "",
+        bmi: "",
+        weight: "",
+        image: "",
+        examID: "",
+        icuAdmit: "",
+        icuNum: "",
+        mortality: ''
+    });
+
     const handleDeleteClick = () => {
-
-
-        
         // const newData = data.filter(patient => patient.patientId !== singlePatient);
-         fetch('http://localhost:9000/exams/' + props.singlePatient._id, {
-           method: 'DELETE',
-           header: 'Access-Control-Allow-Origin'
-         })
-           .then(() => {
-            console.log(props.singlePatient._id)
-            window.location.reload(false)}) // Need a redirection to admin. to refresh the page!
-           .catch(err => console.log(err));
-     
-         // setData(newData);
-     
-     
-         console.log(props.singlePatient._id);
-     
-         props.setButtonPopup(false);
-       };
+        fetch('http://localhost:9000/exams/' + props.singlePatient._id, {
+            method: 'DELETE',
+            header: 'Access-Control-Allow-Origin'
+        })
+            .then(() => {
+                window.location.reload(false)
+            })
+            .catch(err => console.log(err));
+
+        props.setButtonPopup(false);
+    };
+
+    const handleEditFormChange = (event) => {
+        event.preventDefault();
+
+        const fieldName = event.target.getAttribute("name");
+        const fieldValue = event.target.value;
+
+
+        const newFormData = { ...editFormData };
+        newFormData[fieldName] = fieldValue;
+
+        setEditFormData(newFormData);
+    }
+
+    //Adds input data to database with the API as a json form
+    const handleEditFormSubmit = (event) => {
+        event.preventDefault();
+        fetch('http://localhost:9000/exams/' + props.singlePatient._id, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                patientId: (editFormData.patientId !== "" ? editFormData.patientId : props.singlePatient.patientId),
+                age: (editFormData.age !== "" ? editFormData.age : props.singlePatient.age),
+                sex: (editFormData.sex !== "" ? editFormData.sex : props.singlePatient.sex),
+                zipCode: (editFormData.zipCode !== "" ? editFormData.zipCode : props.singlePatient.zipCode),
+                bmi: (editFormData.bmi !== "" ? editFormData.bmi : props.singlePatient.bmi),
+                weight: (editFormData.weight !== "" ? editFormData.weight : props.singlePatient.weight),
+                image: (editFormData.image !== "" ? editFormData.image : props.singlePatient.image),
+                examID: (editFormData.examID !== "" ? editFormData.examID : props.singlePatient.examID),
+                icuAdmit: (editFormData.icuAdmit !== "" ? editFormData.icuAdmit : props.singlePatient.icuAdmit),
+                icuNum: (editFormData.icuNum !== "" ? editFormData.icuNum : props.singlePatient.icuNum),
+                mortality: (editFormData.mortality !== "" ? editFormData.mortality : props.singlePatient.mortality)
+            })
+        })
+            .then(res => window.location.reload(false))
+            .catch(err => console.log(err));
+    }
 
 
 
@@ -34,94 +79,90 @@ export default function Popup(props) {
                 <button className='close-btn' onClick={() => props.setTrigger(false)}>
                     Close</button>
                 <h1>Administrative Actions</h1>
-                <form onSubmit={props.handleEditFormSubmit}>
-
+                <form onSubmit={handleEditFormSubmit}>
+                    <input
+                        type="text"
+                        name="patientId"
+                        defaultValue={props.singlePatient.patientId}
+                        placeholder="Patient ID"
+                        onChange={handleEditFormChange}
+                    ></input>
                     <input
                         type="number"
                         name="age"
-                        value={props.editFormData.age}
-                        required="required"
-                        placeholder={props.singlePatient.age}
-                        onChange={props.handleEditFormChange}                    
-                    />
+                        defaultValue={props.singlePatient.age}
+                        placeholder="Age"
+                        onChange={handleEditFormChange}
+                    ></input>
                     <input
                         type="text"
                         name="sex"
-                        value={props.editFormData.sex}
-                        required="required"
-                        placeholder={props.singlePatient.sex}
-                        onChange={props.handleEditFormChange}  
-                    />
+                        defaultValue={props.singlePatient.sex}
+                        placeholder="Sex"
+                        onChange={handleEditFormChange}
+                    ></input>
 
                     <input
                         type="text"
                         name="zipCode"
-                        value={props.editFormData.zipCode}
-                        required="required"
-                        placeholder={props.singlePatient.zipCode}
-                        onChange={props.handleEditFormChange}  
-                    />
+                        defaultValue={props.singlePatient.zipCode}
+                        placeholder="Zip Code"
+                        onChange={handleEditFormChange}
+                    ></input>
 
                     <input
                         type="number"
                         name="bmi"
-                        value={props.editFormData.bmi}
-                        required="required"
-                        placeholder={props.singlePatient.bmi}
-                        onChange={props.handleEditFormChange}  
-                    />
+                        defaultValue={props.singlePatient.bmi}
+                        placeholder="BMI"
+                        onChange={handleEditFormChange}
+                    ></input>
 
                     <input
                         type="number"
                         name="weight"
-                        value={props.editFormData.weight}
-                        required="required"
-                        placeholder={props.singlePatient.weight}
-                        onChange={props.handleEditFormChange}  
-                    />
+                        defaultValue={props.singlePatient.weight}
+                        placeholder="Weight"
+                        onChange={handleEditFormChange}
+                    ></input>
 
                     <input
                         type="text"
                         name="examID"
-                        value={props.editFormData.examID}
-                        required="required"
-                        placeholder={props.singlePatient.examID}
-                        onChange={props.handleEditFormChange}  
-                    />
+                        defaultValue={props.singlePatient.examID}
+                        placeholder="Exam ID"
+                        onChange={handleEditFormChange}
+                    ></input>
 
                     <input
                         type="text"
                         name="icuAdmit"
-                        value={props.editFormData.icuAdmit}
-                        required="required"
-                        placeholder={props.singlePatient.icuAdmit}
-                        onChange={props.handleEditFormChange}  
-                    />
+                        defaultValue={props.singlePatient.icuAdmit}
+                        placeholder="ICU Admittance"
+                        onChange={handleEditFormChange}
+                    ></input>
 
                     <input
                         type="number"
                         name="icuNum"
-                        value={props.editFormData.icuNum}
-                        required="required"
-                        placeholder={props.singlePatient.icuNum}
-                        onChange={props.handleEditFormChange}  
-                    />
+                        defaultValue={props.singlePatient.icuNum}
+                        placeholder="Number of ICU Visits"
+                        onChange={handleEditFormChange}
+                    ></input>
 
                     <input
                         type="text"
                         name="mortality"
-                        value={props.editFormData.mortality}
-                        required="required"
-                        placeholder={props.singlePatient.mortality}
-                        onChange={props.handleEditFormChange}  
-                    />
+                        defaultValue={props.singlePatient.mortality}
+                        placeholder="Mortality"
+                        onChange={handleEditFormChange}
+                    ></input>
                     <button type="submit">Update Patient Data</button>
                 </form>
                 <button className='delete-btn' onClick={handleDeleteClick}>
                     Delete Patient
                 </button>
             </div>
-
         </div >
     ) : "";
 }
