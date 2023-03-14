@@ -33,17 +33,16 @@
     flex-direction: column;
   }
   
- .form-group label {
+ .form-group  label {
     display: table-cell;
     font-weight: bold;
     margin-bottom: 0.5rem;
     margin-right: 0.5rem;
     padding: 10px;
     
-   
   }
   
-  .form-group input{
+  .form-group  input{
     display: table-cell;
     height: 3rem;
     width: 20rem;
@@ -51,6 +50,9 @@
     background-color: rgb(255, 255, 255);
     padding-left: 10px;
   }
+
+
+
 
   /*Button Group*/
   .btn-group{
@@ -103,4 +105,67 @@
     border: 1px solid rgba(0, 212, 212, 0.514);
     color: black;
   }
+
+
+  /*PatientMaker PopUp*/
+
+  /*Label and input field style.*/
+  .tooltip-wrapper label{
+    display: table-row-group;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 10px;
+  }
+
+  .tooltip-wrapper  input{
+    display: table-row-group;
+    height: 3rem;
+    width: 15rem;
+    border:0.5px solid rgba(204, 204, 204, 0.562);
+    background-color: rgb(255, 255, 255);
+    padding-left: 10px;
+  }
   
+ /*Button Style, inside the modal*/
+  .add-pop {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #06a4ffa6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .add-pop span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .add-pop span:after {
+    content: '+';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .add-pop:hover span {
+    padding-right: 25px;
+  }
+  
+  .add-pop:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+    

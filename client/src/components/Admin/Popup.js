@@ -46,6 +46,7 @@ export default function Popup(props) {
         newFormData[fieldName] = fieldValue;
 
         setEditFormData(newFormData);
+       
     }
 
     //Adds input data to database with the API as a json form
@@ -101,9 +102,6 @@ export default function Popup(props) {
                             <input
                                 type="number"
                                 name="age"
-                                data-toggle="tooltip"
-                                data-placement="top"
-
                                 title="Age"
                                 defaultValue={props.singlePatient.age}
                                 placeholder="Age"
@@ -117,7 +115,9 @@ export default function Popup(props) {
                                 name="sex"
                                 defaultValue={props.singlePatient.sex}
                                 placeholder="Sex"
-                                onChange={handleEditFormChange}>
+                                
+                                onChange={handleEditFormChange}
+                                required>
                             </input>
                         </div>
 
@@ -210,7 +210,7 @@ export default function Popup(props) {
         ) : <div className='popup'>
             <div className='popup-inner'>
                 <button className='close-btn' onClick={() => props.setTrigger(false)}>X</button>
-                <PatientMaker />
+                <PatientMaker lastID={props.pop}/>
             </div>
         </div>) : "";
 

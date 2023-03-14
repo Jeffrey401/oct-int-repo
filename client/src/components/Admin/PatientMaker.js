@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Tooltip from "../util/Tooltip";
+import './Popup.css'
 
 //function for adding new patients to the database
-export default function PatientMaker() {
+export default function PatientMaker(props) {
 
     /**creating a variable and mutator to hold the new
      * patient's data
@@ -45,7 +47,7 @@ export default function PatientMaker() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                patientId: addFormData.patientId,
+                patientId: "COVID-19-AR-"+(parseInt(props.lastID) +1),
                 age: addFormData.age,
                 sex: addFormData.sex,
                 zipCode: addFormData.zipCode,
@@ -64,82 +66,96 @@ export default function PatientMaker() {
 
     //returns a table of input fields to enter new patient's data
     return (
-        <div>
+        <div className="form-grou"><center>
             <h1>Add a Patient</h1>
             <form onSubmit={handleAddFormSubmit}>
-
-                <input
+            
+                <Tooltip text="Age">
+                <label>Age</label><input
                     type="number"
                     name="age"
                     required="required"
                     placeholder="Age..."
                     onChange={handleAddFormChange}
                 />
-                <input
+                </Tooltip>
+                <Tooltip text="Gender(M/F)">
+                <label>Sex</label><input
                     type="text"
                     name="sex"
                     required="required"
                     placeholder="Sex..."
+                    pattern="[mfMF]"
                     onChange={handleAddFormChange}
                 />
-
-                <input
+                </Tooltip>
+                <Tooltip text="ZipCode">
+                <label>ZipCode</label><input
                     type="text"
                     name="zipCode"
                     required="required"
                     placeholder="Zip Code..."
                     onChange={handleAddFormChange}
                 />
-
-                <input
+                </Tooltip>
+                <Tooltip text="BMI">
+                <label>BMI</label><input
                     type="number"
                     name="bmi"
                     required="required"
                     placeholder="BMI..."
                     onChange={handleAddFormChange}
                 />
-
-                <input
+                </Tooltip>
+                <Tooltip text="weight">
+                <label>Weight</label><input
                     type="number"
                     name="weight"
                     required="required"
                     placeholder="Weight"
                     onChange={handleAddFormChange}
                 />
-
-                <input
+                </Tooltip>
+                <Tooltip text="ExamID">
+                <label>ExamID</label><input
                     type="text"
                     name="examID"
                     required="required"
                     placeholder="Exam ID...."
                     onChange={handleAddFormChange}
                 />
-
-                <input
+                </Tooltip>
+                <Tooltip text="ICUAdmit">
+                <label>ICUAdmit</label><input
                     type="text"
                     name="icuAdmit"
                     required="required"
                     placeholder="ICU Admittance..."
                     onChange={handleAddFormChange}
                 />
-
-                <input
+                </Tooltip>
+                <Tooltip text="ICUNUM">
+                <label>ICUNum</label><input
                     type="number"
                     name="icuNum"
                     required="required"
                     placeholder="ICU Number..."
                     onChange={handleAddFormChange}
                 />
-
-                <input
+                </Tooltip>
+                <Tooltip text="Mortality">
+                <label>Mortality</label><input
                     type="text"
                     name="mortality"
                     required="required"
                     placeholder="Mortality..."
                     onChange={handleAddFormChange}
-                />
-                <button type="submit">Add Patient</button>
-            </form>
+                /></Tooltip>
+                
+                <br />
+                <button className="add-pop"  type="submit"><span>Add</span></button>
+                
+            </form></center>
         </div >
     );
 };

@@ -29,7 +29,7 @@ export default function PatientTable(props) {
 
   // function to set the data
   const [data, setData] = useState(null);
-
+  const [lastID , setLastID]= useState("");
 
   const [singlePatient, setSinglePatient] = useState(null);
 
@@ -135,6 +135,12 @@ export default function PatientTable(props) {
   }
   function handleAdd() {
     setAddPopUp(true);
+    const temp = data[data.length - 1];
+    const patientID = temp.patientId;
+    const splitPatientID = patientID.split("-");
+    setLastID(splitPatientID[splitPatientID.length-1])
+    console.log(lastID)
+
   }
 
   // return a div containing the table and ReactPaginate component
@@ -152,7 +158,7 @@ export default function PatientTable(props) {
       />
       
       <Popup
-        trigger={addPopUp} setTrigger={setAddPopUp} pop={"add"}
+        trigger={addPopUp} setTrigger={setAddPopUp} pop={lastID}
       />
 
 
