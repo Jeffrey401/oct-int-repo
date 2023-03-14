@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import './search.css'
 
 
@@ -35,6 +36,11 @@ export default function Search({data}) {
   //  setSelectedOption(e.target.value);
   //};
 
+  const handleClick  = (e) => {
+    console.log("inside search handle Click");
+    console.log(e);
+  }
+
   return (
     <div className="search-container text-center">
    
@@ -43,6 +49,7 @@ export default function Search({data}) {
          <input
           value={searchValue}
           onChange={onInputChange}
+          onSelect={handleClick}
           list = "searchV"
           type= "search"
           className= "searchExp"
@@ -50,8 +57,8 @@ export default function Search({data}) {
         />
         <datalist id="searchV" >
                 {
-                    filterData.map(patient =>
-                        <option  key={patient.patientId} value={patient.patientId}> {patient.patientId}</option>)
+                    filterData && filterData.map(patient =>
+                        <option  key={patient.patientId} value={patient.patientId} > {patient.patientId}</option>)
                 }
         </datalist>
         

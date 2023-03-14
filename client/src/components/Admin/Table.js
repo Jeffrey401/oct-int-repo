@@ -1,14 +1,13 @@
 // import React and useState hook from React library and import ReactPaginate component and data from JSON file
 import React, { useState, useEffect } from "react";
-
 import ReactPaginate from "react-paginate";
-import { Route } from "react-router-dom";
 import Popup from './Popup'
-import './Popup.css'
 import './Table.css'
+import './Popup.css'
+import useGetData from "../util/util";
 
 // declare a default function called PatientTable
-export default function PatientTable() {
+export default function PatientTable({loadData}) {
 
   /**Determines whether or not to open the popup menu
    * for administrative actions
@@ -58,47 +57,12 @@ export default function PatientTable() {
     setEditFormData(newFormData);
   }
 
-  //Adds input data to database with the API as a json form
-  const handleEditFormSubmit = (event) => {
-    event.preventDefault();
-
-    /*fetch('http://localhost:9000/exams/', {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        patientId: editFormData.patientId,
-        age: editFormData.age,
-        sex: editFormData.sex,
-        zipCode: editFormData.zipCode,
-        bmi: editFormData.bmi,
-        weight: editFormData.weight,
-        image: editFormData.image,
-        examID: editFormData.examID,
-        icuAdmit: editFormData.icuAdmit,
-        icuNum: editFormData.icuNum,
-        mortality: editFormData.mortality
-      })
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));*/
-  }
-
+ 
   //Fetching the data from the database
   useEffect(() => {
-    fetch('http://localhost:9000/exams/')
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        data &&
-          setData(data)
-        setPageCount(Math.ceil(data.length / usersPerPage))
-      })
-      .catch(error => console.error(error));
+            loadData && setData(loadData)
+            data && setPageCount(Math.ceil(data.length / usersPerPage))
+  
   }, []);
 
   // function to handle changing page number
@@ -169,7 +133,7 @@ export default function PatientTable() {
       <Table data={data} action={handleClick} />
       <Popup
         trigger={buttonPopup} setTrigger={setButtonPopup} singlePatient={singlePatient} setButtonPopup={setButtonPopup}
-        handleEditFormChange={handleEditFormChange} handleEditFormSubmit={handleEditFormSubmit} editFormData={editFormData}
+        handleEditFormChange={handleEditFormChange}  editFormData={editFormData}
       />
 
 

@@ -39,10 +39,10 @@ export default function Popup(props) {
                     <input
                         type="number"
                         name="age"
-                        value={props.editFormData.age}
+                        defaultValue={props.singlePatient.age}
                         required="required"
                         placeholder={props.singlePatient.age}
-                        onChange={props.handleEditFormChange}                    
+                                           
                     />
                     <input
                         type="text"
