@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 //function for adding new patients to the database
 export default function PatientMaker() {
@@ -30,6 +30,7 @@ export default function PatientMaker() {
         newFormData[fieldName] = fieldValue;
 
         setAddFormData(newFormData);
+
     }
 
 
@@ -57,8 +58,7 @@ export default function PatientMaker() {
                 mortality: addFormData.mortality
             })
         })
-            .then(res => res.json())
-            .then(data => console.log(data))
+            .then(res => window.location.reload(false))
             .catch(err => console.log(err));
     }
 

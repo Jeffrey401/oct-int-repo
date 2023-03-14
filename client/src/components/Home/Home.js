@@ -10,7 +10,6 @@ function Home({data}) {
         data && data.map(exam => {
           return (
             <div key={exam.patientId}>
-​
                   <Card 
                     patientId = {exam.patientId}
                     patientName = {exam.patientName}

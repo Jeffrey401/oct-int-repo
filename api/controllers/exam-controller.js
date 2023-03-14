@@ -6,7 +6,7 @@ const getExams = async(req, res) => {
   const exams = await Exam.find()
   const jsonData = JSON.stringify(exams);
 
-  res.setHeader('Content-Type', 'application/json');
+  
   res.send(jsonData);
 
 
@@ -17,11 +17,11 @@ const getExams = async(req, res) => {
 
 //get a single exam
 const getOneExam = async(req, res) => {
-  const {id} = req.params
+  const id = req.params
+  console.log("inside exam controller")
+  console.log(id)
 
-  if(!mongoose.Types.ObjectId.isValid()) {
-      res.status(404).json({error: "No such exam"})
-  }
+ 
 
   const exam = await Exam.findById(id)
 
@@ -46,11 +46,9 @@ const createExam = async(req, res) => {
 
 //delete an exam
 const deleteExam = async(req, res) => {
-  const {id} = req.params
+  const id = req.params
 
-  if(!mongoose.Types.ObjectId.isValid()) {
-    res.status(404).json({error: "No such exam"})
-  }
+
 
   const exam = await Exam.findOneAndDelete({_id: id})
 
