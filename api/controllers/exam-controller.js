@@ -18,10 +18,6 @@ const getExams = async(req, res) => {
 //get a single exam
 const getOneExam = async(req, res) => {
   const id = req.params
-  console.log("inside exam controller")
-  console.log(id)
-
- 
 
   const exam = await Exam.findById(id)
 
@@ -61,11 +57,7 @@ const deleteExam = async(req, res) => {
 
 //update an exam
 const updateExam = async(req, res) => {
-  const {id} = req.params
-
-  if(!mongoose.Types.ObjectId.isValid()) {
-    res.status(404).json({error: "No such exam"})
-  }
+  const id = req.params
 
   const exam = await Exam.findOneAndUpdate({_id:id}, {
     ...req.body

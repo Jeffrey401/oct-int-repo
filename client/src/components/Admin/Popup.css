@@ -24,3 +24,83 @@
     top: 16px;
     right: 16px;
 }
+
+
+/*Form CSS*/
+
+.form-group {
+    display: table-row;
+    flex-direction: column;
+  }
+  
+ .form-group label {
+    display: table-cell;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 10px;
+    
+   
+  }
+  
+  .form-group input{
+    display: table-cell;
+    height: 3rem;
+    width: 20rem;
+    border:0.5px solid rgba(204, 204, 204, 0.562);
+    background-color: rgb(255, 255, 255);
+    padding-left: 10px;
+  }
+
+  /*Button Group*/
+  .btn-group{
+    display: flex;
+    justify-content: space-between;
+  }
+  .update-btn{
+    transition-duration: 0.4s;
+    background-color: rgb(0, 212, 212);
+    border: 0.5px solid rgba(102, 102, 102, 0.514);
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color:white
+  }
+  .update-btn:hover{
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgba(0, 212, 212, 0.514);
+    color: black;
+  }
+  .delete-btn{
+    transition-duration: 0.4s;
+    background-color: rgb(212, 0, 0);
+    border: 0.5px solid rgba(102, 102, 102, 0.514);
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color:white;
+  }
+  .delete-btn:hover{
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgba(255, 0, 0, 0.514);
+    color: black;
+  }
+  .close-btn{
+    transition-duration: 0.4s;
+    background-color: rgb(255, 255, 255);
+    border: 0.5px solid rgba(102, 102, 102, 0.151);
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color:black;
+    font-size: 15px;
+    margin-left: 90%;
+    align-content: left;
+    
+  }
+  .close-btn:hover{
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgba(0, 212, 212, 0.514);
+    color: black;
+  }
+  

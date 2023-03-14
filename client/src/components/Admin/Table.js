@@ -2,17 +2,19 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Popup from './Popup'
+import Search from "../Search"
 import './Table.css'
-import './Popup.css'
-import useGetData from "../util/util";
+import { Action } from "@remix-run/router";
 
 // declare a default function called PatientTable
-export default function PatientTable({loadData}) {
+export default function PatientTable(props) {
 
   /**Determines whether or not to open the popup menu
    * for administrative actions
   */
-  const [buttonPopup, setButtonPopup] = useState(false);
+
+  const [infoPopUp, setInfoPopUp] = useState(props.onTrue);
+  const [addPopUp, setAddPopUp] = useState(false);
 
   // initialize state variables with useState
   const [pageNumber, setPageNumber] = useState(0);
@@ -22,11 +24,12 @@ export default function PatientTable({loadData}) {
   const pagesVisited = pageNumber * usersPerPage;
 
   // calculate the total number of pages required for pagination based on the length of the data array and usersPerPage
-  const [pageCount, setPageCount] = useState(null);
+  const [pageCount, setPageCount] = useState(Math.ceil(props.length / usersPerPage));
   //
 
   // function to set the data
   const [data, setData] = useState(null);
+
 
   const [singlePatient, setSinglePatient] = useState(null);
 
@@ -49,7 +52,7 @@ export default function PatientTable({loadData}) {
 
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
-    
+
 
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
@@ -57,13 +60,14 @@ export default function PatientTable({loadData}) {
     setEditFormData(newFormData);
   }
 
- 
   //Fetching the data from the database
   useEffect(() => {
-            loadData && setData(loadData)
-            data && setPageCount(Math.ceil(data.length / usersPerPage))
-  
+    props.loadData &&
+      setData(props.loadData)
+
+
   }, []);
+
 
   // function to handle changing page number
   const changePage = ({ selected }) => {
@@ -117,23 +121,38 @@ export default function PatientTable({loadData}) {
   );
 
   const handleClick = patient => (e) => {
-
     // Patient to be update, edit or delete!
-    console.log("Value of patient is " + patient.patientId);
-
-    //const targetPatient = data.find(clickedPatient => clickedPatient.patientId === patient);
     setSinglePatient(patient);
-    setButtonPopup(true);
+    setInfoPopUp(true);
+
+  }
+
+  function handleSearch(action) {
+    if (action != null) {
+      setSinglePatient(action)
+      setInfoPopUp(true);
+    }
+  }
+  function handleAdd() {
+    setAddPopUp(true);
   }
 
   // return a div containing the table and ReactPaginate component
   return (
     <div>
-
+      <br />
+      <br />
+      <Search data={data} onAction={handleSearch} />
+      <button className="add-btn" onClick={handleAdd}>Add</button>
       <Table data={data} action={handleClick} />
+
       <Popup
-        trigger={buttonPopup} setTrigger={setButtonPopup} singlePatient={singlePatient} setButtonPopup={setButtonPopup}
-        handleEditFormChange={handleEditFormChange}  editFormData={editFormData}
+        trigger={infoPopUp} setTrigger={setInfoPopUp} pop={"info"} singlePatient={singlePatient}
+        handleEditFormChange={handleEditFormChange} editFormData={editFormData}
+      />
+      
+      <Popup
+        trigger={addPopUp} setTrigger={setAddPopUp} pop={"add"}
       />
 
 
