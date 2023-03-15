@@ -43,8 +43,8 @@ export default function PatientMaker(props) {
         fetch('http://localhost:9000/exams/', {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Accept': 'application/javascript',
+                'Content-Type': 'application/javascript'
             },
             body: JSON.stringify({
                 patientId: "COVID-19-AR-"+(parseInt(props.lastID) +1),

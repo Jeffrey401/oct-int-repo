@@ -55,7 +55,7 @@ export default function Popup(props) {
         fetch('http://localhost:9000/exams/' + props.singlePatient._id, {
             method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/javascript',
             },
             body: JSON.stringify({
                 patientId: (editFormData.patientId !== "" ? editFormData.patientId : props.singlePatient.patientId),
