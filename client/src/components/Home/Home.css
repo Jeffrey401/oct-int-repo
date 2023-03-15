@@ -1,9 +1,9 @@
 .test-container {
     display: flex;
-    align-content:center;
     flex-wrap: wrap;
-    gap: 1.5%;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-        
+    gap: 2%;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-bottom: 10%;
+    margin-top: 2%;
 }
