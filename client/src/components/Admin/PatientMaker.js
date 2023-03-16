@@ -40,7 +40,7 @@ export default function PatientMaker(props) {
     const handleAddFormSubmit = (event) => {
         event.preventDefault();
 
-        fetch('https://server-octintmedical.onrender.com/exams/', {
+        fetch('https://oct-in-api.onrender.com/exams/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
