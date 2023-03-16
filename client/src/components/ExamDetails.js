@@ -30,7 +30,7 @@ function ExamDetails() {
 
     //Fetching the data from the database
     useEffect(() => {
-        fetch('https://server-octintmedical.onrender.com/exams')
+        fetch('https://oct-in-api.onrender.com/exams')
             .then(response => {
                 return response.json();
             })
