@@ -12,7 +12,6 @@ import { Navigate } from 'react-router-dom'
 
 function App() {
 
-  //Everything Code push
   const data = useGetData();
 
   return (

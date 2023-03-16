@@ -40,11 +40,11 @@ export default function PatientMaker(props) {
     const handleAddFormSubmit = (event) => {
         event.preventDefault();
 
-        fetch('http://localhost:9000/exams/', {
+        fetch('https://server-octintmedical.onrender.com/exams/', {
             method: 'POST',
             headers: {
-                'Accept': 'application/javascript',
-                'Content-Type': 'application/javascript'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 patientId: "COVID-19-AR-"+(parseInt(props.lastID) +1),
