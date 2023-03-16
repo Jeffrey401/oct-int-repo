@@ -23,7 +23,7 @@ export default function Popup(props) {
         const confirmed = window.confirm("Are you sure you want to delete this Patient?");
         if(confirmed){
         // const newData = data.filter(patient => patient.patientId !== singlePatient);
-        fetch('https://server-octintmedical.onrender.com/exams/' + props.singlePatient._id, {
+        fetch('https://oct-in-api.onrender.com/exams/' + props.singlePatient._id, {
             method: 'DELETE',
             header: 'Access-Control-Allow-Origin'
         })
@@ -52,7 +52,7 @@ export default function Popup(props) {
     //Adds input data to database with the API as a json form
     const handleEditFormSubmit = (event) => {
         event.preventDefault();
-        fetch('https://server-octintmedical.onrender.com/exams/' + props.singlePatient._id, {
+        fetch('https://oct-in-api.onrender.com/exams/' + props.singlePatient._id, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
