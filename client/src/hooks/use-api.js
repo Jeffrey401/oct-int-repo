@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const API_ROOT = 'https://server-octintmedical.onrender.com/';
+const API_ROOT = 'https://oct-in-api.onrender.com/';
 
 export function useApi({ path } = { path: '' }) {
   const [response, setResponse] = useState();
