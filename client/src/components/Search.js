@@ -26,9 +26,8 @@ export default function Search(props) {
     setFilterData(
       dt.filter(
         (item) =>
-          item.patientId.includes(searchValue) ||
-          item.firstName.includes(searchValue) ||
-          item.lastName.includes(searchValue)
+          item.patientId.includes(searchValue.toUpperCase())
+
       )
       
     );
