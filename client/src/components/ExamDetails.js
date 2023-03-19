@@ -65,7 +65,7 @@ function ExamDetails() {
                                             <h3 className='mt-5 mb-5'>Weight: {exams.weight}</h3>
                                         </div>
                                         <div className='col-6'>
-                                            <h3 className='mt-5 mb-5'>Exam ID: {exams.examsID}</h3>
+                                            <h3 className='mt-5 mb-5'>Exam ID: {exams.examID}</h3>
                                             <h3 className='mt-5 mb-5'>ICU Admit: {exams.icuAdmit}</h3>
                                             <h3 className='mt-5 mb-5'>ICU Number: {exams.icuNum}</h3>
                                             <h3 className='mt-5 mb-5'>Mortality: {exams.mortality}</h3>
