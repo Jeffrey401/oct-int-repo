@@ -54,7 +54,7 @@ export default function Search(props) {
           list = "searchV"
           type= "search"
           className= "searchExp"
-          placeholder="Patient ID, First or LastName"
+          placeholder="Patient ID"
         />
         <datalist id="searchV" >
                 {
